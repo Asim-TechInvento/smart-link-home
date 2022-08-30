@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head itemscope itemtype="http://schema.org/WebSite">
+	[%load_template file:'headers/includes/head.template.html'/%]
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/css/lightslider.css" integrity="sha512-+1GzNJIJQ0SwHimHEEDQ0jbyQuglxEdmQmKsu8KI7QkMPAnyDrL9TAnVyLPEttcTxlnLVzaQgxv2FpLCLtli0A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body id="n_[@config:current_page_type@]" class="n_[@CONFIG:TEMPLATELANG@] test-123">
+	<a href="#main-content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+	<!-- Announcement -->
+	<!--[%advert type:'text' template:'' limit:'1' ad_group:'announcement' category:'0'%]
+	[%param *header%]
+		<section id="wrapper-announcement">
+			<div class="container text-center">
+				<div class="row">
+		[%/param%]
+		[%param *body%]
+				<div class="col-xs-12">
+					<a href="[@url@]">
+						<span>[%if [@description@]%]<i class="fa [@description@]"></i>[%/if%] [@headline@]</span>
+					</a>
+				</div>
+		[%/param%]
+		[%param *footer%]
+				</div>
+			</div>
+		</section>
+	[%/param%]
+	[%/advert%]-->
+	<section id="wrapper-announcement">
+    <div class="container text-center">
+    <div class="row"><div class="col-xs-12">
+        <ul class="announcement-slide">
+            <li><span><i class="fa fa-truck"></i>FREE SHIPPING ON AUS ORDERS PLEASE CONTACT OUR OFFICE</span></li>
+            <li><span><i class="fa fa-truck"></i>DELIVERY WILL BE DELAYED DUE TO COVID-19</span></li>
+            <li><span><i class="fa fa-truck"></i>FREE SHIPPING ON AUS ORDERS OVER $1900 TO MELBOURNE METRO</span></li>
+        </ul>
+    </div></div>
+    </div>
+    </section>
+
+	<!-- Header -->
+	<header id="wrapper-header">
+		<div class="container hidden-xs hidden-sm">
+			<!-- Social Icons -->
+			<div class="wrapper-social col-sm-4">
+				<ul class="list-inline list-social navbar-left" itemscope itemtype="http://schema.org/Organization">
+					[%if [@config:facebook_account_id@]%]
+					<li><a itemprop="sameAs" href="[@config:facebook_account_id@]" target="_blank"><i class="fa fa-facebook text-facebook"></i></a></li>
+					[%/if%]
+					[%if [@config:twitter_account_id@]%]
+					<li><a itemprop="sameAs" href="[@config:twitter_account_id@]" target="_blank"><i class="fa fa-twitter text-twitter"></i></a></li>
+					[%/if%]
+					[%if [@config:googleplus_account_id@]%]
+					<li><a itemprop="sameAs" href="[@config:googleplus_account_id@]" target="_blank"><i class="fa fa-google-plus text-google-plus"></i></a></li>
+					[%/if%]
+					[%if [@config:youtube_account_id@]%]
+					<li><a itemprop="sameAs" href="[@config:youtube_account_id@]" target="_blank"><i class="fa fa-youtube text-youtube"></i></a></li>
+					[%/if%]
+					[%if [@config:instagram_account_id@]%]
+					<li><a itemprop="sameAs" href="[@config:instagram_account_id@]" target="_blank"><i class="fa fa-instagram text-instagram"></i></a></li>
+					[%/if%]
+					[%if [@config:pinterest_account_id@]%]
+					<li><a itemprop="sameAs" href="[@config:pinterest_account_id@]" target="_blank"><i class="fa fa-pinterest text-pinterest"></i></a></li>
+					[%/if%]
+					[%if [@config:tumblr_account_id@]%]
+					<li><a itemprop="sameAs" href="[@config:tumblr_account_id@]" target="_blank"><i class="fa fa-tumblr text-tumblr"></i></a></li>
+					[%/if%]
+					[%if [@config:linkedin_account_id@]%]
+					<li><a itemprop="sameAs" href="[@config:linkedin_account_id@]" target="_blank"><i class="fa fa-linkedin text-linkedin"></i></a></li>
+					[%/if%]
+					[%if [@CONFIG:COMPANY_EMAIL@]%]
+					<li><a itemprop="sameAs" href="mailto:[@CONFIG:COMPANY_EMAIL@]"><i class="fa fa-envelope"></i></a></li>
+					[%/if%]
+				</ul>
+			</div>
+
+			<!-- Logo -->
+			<div class="wrapper-logo col-sm-4 text-center">
+				<a href="[@config:homeurl@]" title="[@config:company_name@]">
+					<img class="logo" src="[@config:imageurl@]/website_logo.png" alt="[@config:company_name@]"/>
+				</a>
+			</div>
+
+			<div class="wrapper-utility col-sm-4 text-right">
+				<!-- Search -->
+				[%if [@user:username@] ne 'noreg'%]
+				<div class="header-search">
+					<button class="search-btn" type="button" data-toggle="collapse" data-target="#searchToggle" aria-expanded="true"><i class="fa fa-search"></i></button>
+				</div>
+				[%/if%]
+				<!-- Accounts Menu -->
+				<div class="header-account">
+					[%if [@user:username@] ne 'noreg'%]
+						<div class="wrapper-accounts hidden-xs btn-group">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i></a>
+							<ul class="dropdown-menu pull-right">
+								<li><a href="[%url page:'account'/%]">Account Home</a></li>
+								<li><a href="[%url page:'account'/%]#orders">Orders</a></li>
+								[%if [@config:allow_user_quote@]%]
+								<li><a href="[%url page:'account'/%]#quotes">Quotes</a></li>
+								[%/if%]
+								<li><a href="[%url page:'account' type:'payrec'/%]">Pay Invoices</a></li>
+								[%if [@config:show_wishlist@]%]
+								<li><a href="[%url page:'account' type:'wishlist'/%]">Wishlists</a></li>
+								[%/if%]
+								<li class="divider"></li>
+								<li> <a href="[%url page:'account' type:'logout'/%]"><i class="fa fa-off"></i> Log Out</a> </li>
+							</ul>
+						</div>
+						[%else%]
+						<div class="wrapper-accounts hidden-xs btn-group text-center">
+							<a href="[%url page:'account' type:'login'/%]"><i class="fa fa-user"></i><br><span class="font-size-14">Login/Register</span></a>
+						</div>
+						[%/if%]
+				</div>
+				[%if [@user:username@] ne 'noreg'%]
+				<!-- Cart -->
+				<div id="header-cart">
+					<a href="#" data-toggle="dropdown" id="cartcontentsheader">
+						<i class="fa fa-shopping-cart" aria-hidden="true"></i> <span rel="a2c_item_count">[%format type:'number' dp:'0'%][%CART id:'total_items'%][%/CART%][%/format%]</span></span></a>
+					<ul class="dropdown-menu">
+						<li class="box" id="neto-dropdown">
+							<div class="body padding" id="cartcontents">
+								<font class="small">Your shopping cart is empty. Add items to your cart and they will appear here.</font>
+							</div>
+							<div class="footer"></div>
+						</li>
+					</ul>
+				</div>
+				[%/if%]
+			</div>
+		</div>
+
+		<!-- Desktop Menu -->
+		<section id="wrapper-staticmenu" class="navbar-responsive-collapse hidden-xs hidden-sm">
+			<div class="container">
+			    [%if [@user:username@] ne 'noreg'%]
+						
+				[%else%]
+					<ul class="nav navbar-nav category-menu 1" role="navigation" aria-label="Main menu">
+					[%cache type:'menu' id:'desktop_static_menu_not_login'%]
+						[%menu id:'webheader_guest'%]
+							[%param *header%]
+							
+							[%/param%]
+							[%param *level_1%]
+								<li class="lvl-1 [%if [@next_level@]%]dropdown dropdown-hover[%/if%]">
+									<a href="[@url@]" class="ease [%if [@next_level@]%] dropdown-toggle[%/if%]">[@name@] [%if [@next_level@]%]<i class="fa fa-angle-down" aria-hidden="true"></i>[%/if%]</a>
+									[%if [@next_level@]%]
+										<ul class="dropdown-menu level2">
+											[@next_level@]
+										</ul>
+									[%/if%]
+								</li>
+								[%/param%]
+							[%param *level_2%]
+								<li class="lvl-2 [%if [@next_level@]%] dropdown dropdown-hover [%/if%]"> <a href="[@url@]" class="ease nuhover dropdown-toggle">[@name@]</a>
+									[%if [@next_level@]%]
+										<ul class="dropdown-menu dropdown-menu-horizontal">
+											[@next_level@]
+										</ul>
+									[%/if%]
+								</li>
+								[%/param%]
+							[%param *level_3%]
+								<li class="lvl-3">
+									<a href="[@url@]">[@name@]</a>
+								</li>
+							[%/param%]
+						[%/menu%]
+					[%/ cache%]
+				</ul>
+				[%/if%]
+			
+				[%if [@user:username@] ne 'noreg'%]
+					[%if [@CONFIG:static_menu@] ne '1'%]
+							<ul class="nav navbar-nav category-menu 2">
+								[%cache type:'menu' id:'desktop_category_menu'%]
+									[%content_menu content_type:'category' sortby:'sortorder, name' show_empty:'1'%]
+										[%param *level_1%]
+											<li class="lvl-1 [%if [@next_level@]%]dropdown dropdown-hover[%/if%]">
+												<a href="[@url@]" class="ease [%if [@next_level@]%]dropdown-toggle[%/if%]">[@name@] [%if [@next_level@]%]<i class="fa fa-angle-down" aria-hidden="true"></i>[%/if%]</a>
+												[%if [@next_level@]%]
+													<ul class="dropdown-menu level2">
+														[@next_level@]
+													</ul>
+												[%/if%]
+											</li>
+										[%/param%]
+										[%param *level_2%]
+											<li class="lvl-2 [%if [@next_level@]%]dropdown dropdown-hover[%/if%]"> <a href="[@url@]" class="ease nuhover dropdown-toggle">[@name@]</a>
+												[%if [@next_level@]%]
+													<ul class="dropdown-menu dropdown-menu-horizontal">
+														[@next_level@]
+													</ul>
+												[%/if%]
+											</li>
+										[%/param%]
+										[%param *level_3%]
+											<li class="lvl-3">
+												<a href="[@url@]">[@name@]</a>
+											</li>
+										[%/param%]
+									[%/content_menu%]
+								[%/cache%]
+							</ul>
+					[%else%]
+							<ul class="nav navbar-nav category-menu 3" role="navigation" aria-label="Main menu">
+								[%cache type:'menu' id:'desktop_static_menu'%]
+									[%menu id:'web_header'%]
+										[%param *header%]
+										[%if [@CONFIG:static_menu_with_category@] eq '1'%]
+											<li class="lvl-1 dropdown dropdown-hover">
+												<a href="#" class="ease dropdown-toggle">Shop <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+												<ul class="dropdown-menu level2">
+													[%content_menu content_type:'category' sortby:'sortorder, name' show_empty:'1'%]
+														[%param *level_1%]
+															<li class="lvl-2 [%if [@next_level@]%] dropdown dropdown-hover [%/if%]">
+																<a href="[@url@]" class="ease">[@name@]</a>
+																[%if [@next_level@]%]
+																	<ul class="dropdown-menu dropdown-menu-horizontal">
+																		[@next_level@]
+																	</ul>
+																[%/if%]
+															</li>
+														[%/param%]
+														[%param *level_2%]
+															<li class="lvl-3"> 
+																<a href="[@url@]">[@name@]</a>
+															</li>
+														[%/param%]
+													[%/content_menu%]
+												</ul>
+											</li>
+										[%/if%]
+										[%/param%]
+										[%param *level_1%]
+											<li class="lvl-1 [%if [@next_level@]%]dropdown dropdown-hover[%/if%]">
+												<a href="[@url@]" class="ease [%if [@next_level@]%] dropdown-toggle[%/if%]">[@name@] [%if [@next_level@]%]<i class="fa fa-angle-down" aria-hidden="true"></i>[%/if%]</a>
+												[%if [@next_level@]%]
+													<ul class="dropdown-menu level2">
+														[@next_level@]
+													</ul>
+												[%/if%]
+											</li>
+											[%/param%]
+										[%param *level_2%]
+											<li class="lvl-2 [%if [@next_level@]%] dropdown dropdown-hover [%/if%]"> <a href="[@url@]" class="ease nuhover dropdown-toggle">[@name@]</a>
+												[%if [@next_level@]%]
+													<ul class="dropdown-menu dropdown-menu-horizontal">
+														[@next_level@]
+													</ul>
+												[%/if%]
+											</li>
+											[%/param%]
+										[%param *level_3%]
+											<li class="lvl-3">
+												<a href="[@url@]">[@name@]</a>
+											</li>
+										[%/param%]
+									[%/menu%]
+								[%/ cache%]
+							</ul>
+					[%/if%]
+				[%/if%]
+			</div>
+		</section>
+	</header>
+
+	<!-- MOBILE -->
+	<div class="wrapper-mob-header visible-xs visible-sm">
+		<div class="mob-logo">
+			<a href="[@config:homeurl@]" title="[@config:company_name@]">
+				<img class="logo" src="[@config:imageurl@]/website_logo.png" alt="[@config:company_name@]"/>
+			</a>
+		</div>
+		<div class="mob-links">
+			[%if [@user:username@] ne 'noreg'%]
+			<span class="mob-search">
+				<button class="search-btn" type="button" data-toggle="collapse" data-target="#searchToggle" aria-expanded="true"><i class="fa fa-search"></i></button>
+			</span>
+			<span class="mob-cart">
+				<a href="[%url page:'checkout' type:'cart'/%]" aria-label="Shopping cart">
+					<div><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
+					<span class="cart-count text-center" rel="a2c_item_count">[%format type:'number' dp:'0'%][%CART id:'total_items'%][%/CART%][%/format%]</span>
+				</a>
+			</span>
+			[%/if%]
+			<span class="mob-menu">
+				<button class="navbar-slide-toggler navbar-toggler" type="button">
+					<span class="h2"><i class="fa fa-bars"></i></span>
+				</button>
+			</span>
+		</div>
+	</div>
+
+	<!-- Mobile Menu Script -->
+	[%SITE_VALUE id:'footer_javascript'%]
+	<script type="text/javascript">
+		$('.navbar-slide-toggler').on('click', function() {
+			$('#mobile-menu').toggleClass('reveal');
+			$('body').toggleClass('mobile-menu-active');
+			$('.overlay').toggle();
+		});
+		function hideMenu(){
+			$('#mobile-menu').removeClass('reveal');
+			$('.overlay').hide();
+		}
+		$('.overlay').on('click', function(){
+			hideMenu();
+			$('body').toggleClass('mobile-menu-active');
+		});
+	</script>
+	[%END SITE_VALUE%]
+
+
+	<!-- Mobile Menu -->
+	<div class="overlay"></div>
+	<div id="mobile-menu" class="visible-xs visible-sm">
+		<div class="content-inner">
+			<!-- Cart & Account -->
+			<div class="account-btn">
+				<a href="[%url page:'account'/%]" class="btn btn-default" aria-label="Account">
+					<i class="fa fa-user"></i> [%if [@user:username@] ne 'noreg'%]My Account[%else%]Login / Register[%/if%]
+				</a>
+				<a class="navbar-slide-toggler navbar-toggler closebtn btn btn-default">
+					<i class="fa fa-times"></i>
+				</a>
+			</div>
+
+			<div class="navbar-collapse navbar-responsive-collapse">
+				[%cache type:'menu' id:'mobile_static_menu_not_login'%]
+						[%menu id:'webheader_guest'%]
+							[%param *header%]
+								
+							[%/param%]
+							[%param *level_1%]
+								<li class="lvl-1">
+									[%if [@next_level@]%]
+											<div class="menu-level-wrapper">
+												<a href="[@url@]" class="collapsed mob-drop">[@name@]</a>
+												<span data-toggle="collapse" data-parent="#mob-menu" href="#mob-menu-[@hierarchy@]" class="collapsed mob-drop"></span>
+											</div>
+											<ul id="mob-menu-[@hierarchy@]" class="panel-collapse collapse collapse-menu">
+												[@next_level@]
+											</ul>
+									[%else%]
+											<div class="menu-level-wrapper">
+												<a href="[@url@]">[@name@]</a>
+											</div>
+									[%/if%]
+								</li>
+							[%/param%]
+							[%param *level_2%]
+								<li class="lvl-2 [%if [@next_level@]%]dropdown dropdown-hover[%/if%]">
+									[%if [@next_level@]%]
+											<div class="menu-level-wrapper">
+												<a href="[@url@]" class="collapsed mob-drop">[@name@]</a>
+												<span data-toggle="collapse" data-parent="#mob-menu" href="#mob-menu-[@hierarchy@]" class="collapsed mob-drop"></span>
+											</div>
+											<ul id="mob-menu-[@hierarchy@]" class="panel-collapse collapse collapse-menu">
+												[@next_level@]
+											</ul>
+									[%else%]
+											<div class="menu-level-wrapper">
+												<a href="[@url@]">[@name@]</a>
+											</div>
+									[%/if%]
+								</li>
+							[%/param%]
+							[%param *level_3%]
+								<li class="lvl-3">
+									<a href="[@url@]">[@name@]</a>
+								</li>
+							[%/param%]
+						[%/content_menu%]
+					[%/ cache%]
+				[%if [@user:username@] ne 'noreg'%]
+					[%if [@CONFIG:static_menu@] ne '1'%]
+						<ul class="nav navbar-nav" id="mob-menu">
+							[%cache type:'menu' id:'category_mobile_menu'%]
+								[%content_menu content_type:'category' sortby:'sortorder, name' show_empty:'1'%]
+									[%param *level_1%]
+										<li class="lvl-1">
+											[%if [@next_level@]%]
+													<div class="menu-level-wrapper">
+				 										<a href="[@url@]" class="collapsed mob-drop">[@name@]</a>
+												 		<span data-toggle="collapse" data-parent="#mob-menu" href="#mob-menu-[@content_id@]" class="collapsed mob-drop"></span>
+													</div>
+													<ul id="mob-menu-[@content_id@]" class="panel-collapse collapse collapse-menu">
+														[@next_level@]
+													</ul>
+											[%else%]
+													<div class="menu-level-wrapper">
+														<a href="[@url@]">[@name@]</a>
+													</div>
+											[%/if%]
+										</li>
+									[%/param%]
+									[%param *level_2%]
+										<li class="lvl-2 [%if [@next_level@]%]dropdown dropdown-hover[%/if%]">
+											[%if [@next_level@]%]
+													<div class="menu-level-wrapper">
+														<a href="[@url@]" class="collapsed mob-drop">[@name@]</a>
+														<span data-toggle="collapse" data-parent="#mob-menu" href="#mob-menu-[@content_id@]" class="collapsed mob-drop"></span>
+													</div>
+													<ul id="mob-menu-[@content_id@]" class="panel-collapse collapse collapse-menu">
+														[@next_level@]
+													</ul>
+											[%else%]
+													<div class="menu-level-wrapper">
+														<a href="[@url@]">[@name@]</a>
+													</div>
+											[%/if%]
+										</li>
+									[%/param%]
+									[%param *level_3%]
+											<li class="lvl-3">
+												<a href="[@url@]">[@name@]</a>
+											</li>
+									[%/param%]
+								[%/content_menu%]
+							[%/ cache%]
+						</ul>
+					[%else%]
+						<ul class="nav navbar-nav" id="mob-menu">
+							[%cache type:'menu' id:'mobile_static_menu'%]
+								[%menu id:'web_header'%]
+									[%param *header%]
+										[%if [@CONFIG:static_menu_with_category@] eq '1'%]
+											<li class="lvl-1">
+												<div class="menu-level-wrapper">
+													<a href="" class="collapsed mob-drop">Shop</a>
+													<span data-toggle="collapse" data-parent="#mob-menu" href="#mob-menu-shop" class="collapsed mob-drop"></span>
+												</div>
+												<ul id="mob-menu-shop" class="panel-collapse collapse collapse-menu">
+													[%content_menu content_type:'category' sortby:'sortorder, name' show_empty:'1'%]
+														[%param *level_1%]
+															<li class="lvl-2 [%if [@next_level@]%]dropdown dropdown-hover[%/if%]">
+																[%if [@next_level@]%]
+																		<div class="menu-level-wrapper">
+																			<a href="[@url@]" class="collapsed mob-drop">[@name@]</a>
+																			<span data-toggle="collapse" data-parent="#mob-menu" href="#mob-menu-[@content_id@]" class="collapsed mob-drop"></span>
+																		</div>
+																		<ul id="mob-menu-[@content_id@]" class="panel-collapse collapse collapse-menu">
+																			[@next_level@]
+																		</ul>
+																[%else%]
+																		<div class="menu-level-wrapper">
+																			<a href="[@url@]">[@name@]</a>
+																		</div>
+																[%/if%]
+															</li>
+														[%/param%]
+														[%param *level_2%]
+															<li class="lvl-3">
+																<a href="[@url@]">[@name@]</a>
+															</li>
+														[%/param%]
+													[%/content_menu%]
+												</ul>
+											</li>
+										[%/if%]
+									[%/param%]
+									[%param *level_1%]
+										<li class="lvl-1">
+											[%if [@next_level@]%]
+													<div class="menu-level-wrapper">
+				 										<a href="[@url@]" class="collapsed mob-drop">[@name@]</a>
+												 		<span data-toggle="collapse" data-parent="#mob-menu" href="#mob-menu-[@hierarchy@]" class="collapsed mob-drop"></span>
+													</div>
+													<ul id="mob-menu-[@hierarchy@]" class="panel-collapse collapse collapse-menu">
+														[@next_level@]
+													</ul>
+											[%else%]
+													<div class="menu-level-wrapper">
+														<a href="[@url@]">[@name@]</a>
+													</div>
+											[%/if%]
+										</li>
+									[%/param%]
+									[%param *level_2%]
+										<li class="lvl-2 [%if [@next_level@]%]dropdown dropdown-hover[%/if%]">
+											[%if [@next_level@]%]
+													<div class="menu-level-wrapper">
+														<a href="[@url@]" class="collapsed mob-drop">[@name@]</a>
+														<span data-toggle="collapse" data-parent="#mob-menu" href="#mob-menu-[@hierarchy@]" class="collapsed mob-drop"></span>
+													</div>
+													<ul id="mob-menu-[@hierarchy@]" class="panel-collapse collapse collapse-menu">
+														[@next_level@]
+													</ul>
+											[%else%]
+													<div class="menu-level-wrapper">
+														<a href="[@url@]">[@name@]</a>
+													</div>
+											[%/if%]
+										</li>
+									[%/param%]
+									[%param *level_3%]
+										<li class="lvl-3">
+											<a href="[@url@]">[@name@]</a>
+										</li>
+									[%/param%]
+								[%/content_menu%]
+							[%/ cache%]
+						</ul>
+					[%/if%]
+				[%/if%]
+			</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+	</div>
+
+	<div id="searchToggle" class="collapse" aria-expanded="true">
+		<form class="search-form" name="productsearch" method="get" action="/">
+			<div class="form-group">
+				<input type="hidden" name="rf" value="kw">
+				<input class="form-control input-lg search-bar ajax_search" id="name_search" autocomplete="off" name="kw" value="" placeholder="Search our range..." type="search">
+				<button type="submit" value="Search" class="search-btn-submit"><i class="fa fa-search"></i></button>
+			</div>
+			<button class="search-close-btn" type="button" data-toggle="collapse" data-target="#searchToggle" aria-expanded="true" aria-controls="collapseExample"><i class="fa fa-times" aria-hidden="true"></i></button>
+		</form>
+	</div>
+
+	<!-- Main Content -->
+	<div id="main-content" class="container" role="main">

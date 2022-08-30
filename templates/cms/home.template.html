@@ -1,0 +1,752 @@
+</div>
+
+[%if [@config:show_home_ads@]%]
+	[%advert type:'text' template:'carousel' limit:'8' ad_group:''%]
+		[%param *header%]
+			<!-- Slideshow -->
+			<section class="wrapper-carousel">
+				<div class="carousel-slider">
+		[%/param%]
+		[%param *footer%]
+				</div>
+			</section>
+		[%/param%]
+		[%param *ifempty%]
+			<a class="neto-placeholder neto-placeholder-rotator btn-loads" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>" href="[@config:home_url@]/_cpanel?item=adw&page=view&id=New">Add a Banner</a>
+		[%/param%]
+	[%/advert%]
+	[%site_value id:'footer_javascript'%]
+		<script>
+		$(document).ready(function() {
+			setTimeout(function() {
+				$('.wrapper-carousel .carousel-slider').slick({
+					slidesToShow: 1,
+					slidesToScroll: 1,
+					autoplay: true,
+					autoplaySpeed: 4000,
+					arrows: false,
+					dots: true,
+					fade: true,
+					swipeToSlide: true
+				});
+				$('.nCustom-slick-all').hide().css('visibility','visible').fadeIn('slow');
+				}, 200);
+			});
+		</script>
+	[%/site_value%]
+[%/if%]
+
+<!-- USPs section -->
+[%advert type:'text' template:'usps' limit:'3' ad_group:'usp' sortby:'sortorder' category:'0'%]
+	[%param *header%]
+	<section class="wrapper-usps fadeinslow">
+		<div class="container">
+	[%/param%]
+	[%param *footer%]
+		</div>
+	</section>
+	[%/param%]
+[%/advert%]
+
+[%if [@user:group_id@] eq [@config:default_groupid@]%]
+
+	[%advert type:'text' template:'guest_featured-ads' limit:'7' ad_group:'guest_home_ad_units'%]
+		[%param *header%]
+			<!-- Featured Adverts -->
+			[%if [@total_showing@] eq '1'%]
+				<style>
+					.wrapper-featured-grid .grid-item {
+						width: 100%;
+					}
+				</style>
+			[%/if%]
+			[%if [@total_showing@] eq '2' OR [@total_showing@] eq '4'%]
+				<style>
+					.wrapper-featured-grid .grid-item {
+						width: 50%;
+					}
+				</style>
+			[%/if%]
+			[%if [@total_showing@] eq '3' OR [@total_showing@] eq '6'%]
+				<style>
+					.wrapper-featured-grid .grid-item {
+						width: 33.3333%;
+					}
+				</style>
+			[%/if%]
+			[%if [@total_showing@] eq '5'%]
+				<style>
+					.wrapper-featured-grid .grid-item {
+						width: 50%;
+					}
+					.wrapper-featured-grid .grid-item:nth-child(n+3) {
+						width: 33.3333%;
+					}
+				</style>
+			[%/if%]
+			[%if [@total_showing@] eq '7'%]
+				<style>
+				.wrapper-featured-grid .grid-item {
+					width: 50%;
+				}
+				.wrapper-featured-grid .grid-item:nth-child(3),
+				.wrapper-featured-grid .grid-item:nth-child(4),
+				.wrapper-featured-grid .grid-item:nth-child(5) {
+					width: 33.333%;
+				}
+				</style>
+			[%/if%]
+			<section class="wrapper-featured-grid fadeinslow" style="margin-bottom: 0px;">
+				<div class="container">
+		[%/param%]
+		[%param *footer%]
+				</div>
+			</section>
+		[%/param%]
+	[%/advert%]
+
+	[%advert type:'text' template:'featured-ads' limit:'7' ad_group:'home_ad_units'%]
+		[%param *header%]
+			<!-- Featured Adverts -->
+			[%if [@total_showing@] eq '1'%]
+				<style>
+					.wrapper-featured-grid .grid-item {
+						width: 100%;
+					}
+				</style>
+			[%/if%]
+			[%if [@total_showing@] eq '2' OR [@total_showing@] eq '4'%]
+				<style>
+					.wrapper-featured-grid .grid-item {
+						width: 50%;
+					}
+				</style>
+			[%/if%]
+			[%if [@total_showing@] eq '3' OR [@total_showing@] eq '6'%]
+				<style>
+					.wrapper-featured-grid .grid-item {
+						width: 33.3333%;
+					}
+				</style>
+			[%/if%]
+			[%if [@total_showing@] eq '5'%]
+				<style>
+					.wrapper-featured-grid .grid-item {
+						width: 50%;
+					}
+					.wrapper-featured-grid .grid-item:nth-child(n+3) {
+						width: 33.3333%;
+					}
+				</style>
+			[%/if%]
+			[%if [@total_showing@] eq '7'%]
+				<style>
+				.wrapper-featured-grid .grid-item {
+					width: 50%;
+				}
+				.wrapper-featured-grid .grid-item:nth-child(3),
+				.wrapper-featured-grid .grid-item:nth-child(4),
+				.wrapper-featured-grid .grid-item:nth-child(5) {
+					width: 33.333%;
+				}
+				</style>
+			[%/if%]
+			<section class="wrapper-featured-grid fadeinslow" style="margin-top: 0px;">
+				<div class="container">
+		[%/param%]
+		[%param *footer%]
+				</div>
+			</section>
+		[%/param%]
+	[%/advert%]
+
+[%else%]
+
+[%if [@CONFIG:hide_newarrivals@] ne '1'%]
+	[%advert type:'product' limit:'15' template:'' ad_group:'new-arrivals'%]
+		[%param *header%]
+			<!-- New arrivals -->
+			<section class="wrapper-popular fadeinslow">
+				<div class="container text-center">
+					<h3 class="title hidden-xs">New arrivals</h3>
+					<div class="product-slider-newarrivals single-item" aria-label="New arrivals">
+		[%/param%]
+		[%param footer%]
+					</div>
+					[%if [@CONFIG:link_for_newarrivals@] ne ''%]
+						<div class="mt-5">
+							<!-- <a class="btn btn-primary" href="[@CONFIG:link_for_newarrivals@]">VIEW ALL NEW ARRIVALS</a> -->
+							<a class="btn btn-primary" href="/new-arrivals/">VIEW ALL NEW ARRIVALS</a>
+						</div>
+					[%/if%]
+				</div>
+			</section>
+			[%site_value id:'footer_javascript'%]
+				<script>
+				$('.wrapper-popular .product-slider-newarrivals').slick({
+					slidesToShow: 5,
+					slidesToScroll: 3,
+					autoplay: true,
+					autoplaySpeed: 4000,
+					arrows: false,
+					dots:true,
+					swipeToSlide: true,
+					responsive: [
+						{
+							breakpoint: 991,
+							settings: {
+								slidesToShow: 3,
+								slidesToScroll: 3,
+								autoplay: false
+							}
+						},{
+							breakpoint: 500,
+							settings: {
+								slidesToShow: 2,
+								slidesToScroll: 2
+							}
+						}
+					]
+				});
+			</script>
+			[%/site_value%]
+		[%/param%]
+		[%param *ifempty%]
+
+			[%new_arrivals template:'' limit:'12'%]
+				[%param *header%]
+				<section class="wrapper-popular fadeinslow">
+					<div class="container text-center">
+						<h3 class="title hidden-xs">New arrivals</h3>
+						<div class="product-slider-new-arrivals single-item" aria-label="New arrivals">
+				[%/param%]
+				[%param *footer%]
+						</div>
+						[%if [@CONFIG:link_for_newarrivals@] ne ''%]
+							<div class="mt-5">
+								<!-- <a class="btn btn-primary" href="[@CONFIG:link_for_newarrivals@]">VIEW ALL NEW ARRIVALS</a> -->
+								<a class="btn btn-primary" href="/new-arrivals/">VIEW ALL NEW ARRIVALS</a>
+							</div>
+						[%/if%]
+					</div>
+				</section>
+				[%site_value id:'footer_javascript'%]
+				<script>
+					$('.wrapper-popular .product-slider-new-arrivals').slick({
+						slidesToShow: 5,
+						slidesToScroll: 3,
+						autoplay: true,
+						autoplaySpeed: 4000,
+						arrows: false,
+						dots:true,
+						swipeToSlide: true,
+						responsive: [
+							{
+								breakpoint: 991,
+								settings: {
+									slidesToShow: 3,
+									slidesToScroll: 3,
+									autoplay: false
+								}
+							},{
+								breakpoint: 500,
+								settings: {
+									slidesToShow: 2,
+									slidesToScroll: 2
+								}
+							}
+						]
+					});
+				</script>
+				[%/site_value%]
+				[%/param%]
+			[%/new_arrivals%]
+		
+		[%/param%]
+	[%/advert%]
+	
+[%/if%]
+
+[%if [@CONFIG:hide_bestsellers@] ne '1'%]
+	[%advert type:'product' limit:'15' template:'' ad_group:'best-sellers'%]
+		[%param *header%]
+			<!-- Best Sellers -->
+			<section class="wrapper-popular fadeinslow">
+				<div class="container text-center">
+					<h3 class="title hidden-xs">Best Sellers</h3>
+					<div class="product-slider-bestsellers single-item" aria-label="Best Sellers">
+		[%/param%]
+		[%param footer%]
+					</div>
+					[%if [@CONFIG:link_for_bestsellers@] ne ''%]
+						<div class="mt-5">
+							 <!--<a class="btn btn-primary" href="[@CONFIG:link_for_bestsellers@]">VIEW ALL BEST SELLERS</a> -->
+							<a class="btn btn-primary" href="/best-sellers/">VIEW ALL BEST SELLERS</a>
+						</div>
+					[%/if%]
+				</div>
+			</section>
+			[%site_value id:'footer_javascript'%]
+				<script>
+				$('.wrapper-popular .product-slider-bestsellers').slick({
+					slidesToShow: 5,
+					slidesToScroll: 3,
+					autoplay: true,
+					autoplaySpeed: 4000,
+					arrows: false,
+					dots:true,
+					swipeToSlide: true,
+					responsive: [
+						{
+							breakpoint: 991,
+							settings: {
+								slidesToShow: 3,
+								slidesToScroll: 3,
+								autoplay: false
+							}
+						},{
+							breakpoint: 500,
+							settings: {
+								slidesToShow: 2,
+								slidesToScroll: 2
+							}
+						}
+					]
+				});
+			</script>
+			[%/site_value%]
+		[%/param%]
+		
+		[%param *ifempty%]
+		<!-- No selected Best Sellers -->
+		[%top_sellers template:'' category:'0' limit:'15'%]
+			[%param *header%]
+				<!-- Best Sellers -->
+				<section class="wrapper-popular fadeinslow">
+					<div class="container text-center">
+						<h3 class="title hidden-xs">Best Sellers</h3>
+						<div class="product-slider-bestsellers single-item" aria-label="Best Sellers">
+			[%/param%]
+			[%param *footer%]
+						</div>
+						[%if [@CONFIG:link_for_bestsellers@] ne ''%]
+							<div class="mt-5">
+								 <!--<a class="btn btn-primary" href="[@CONFIG:link_for_bestsellers@]">VIEW ALL BEST SELLERS</a> -->
+								<a class="btn btn-primary" href="/best-sellers/">VIEW ALL BEST SELLERS</a>
+							</div>
+						[%/if%]
+					</div>
+				</section>
+				[%site_value id:'footer_javascript'%]
+					<script>
+					$('.wrapper-popular .product-slider-bestsellers').slick({
+						slidesToShow: 5,
+						slidesToScroll: 3,
+						autoplay: true,
+						autoplaySpeed: 4000,
+						arrows: false,
+						dots:true,
+						swipeToSlide: true,
+						responsive: [
+							{
+								breakpoint: 991,
+								settings: {
+									slidesToShow: 3,
+									slidesToScroll: 3,
+									autoplay: false
+								}
+							},{
+								breakpoint: 500,
+								settings: {
+									slidesToShow: 2,
+									slidesToScroll: 2
+								}
+							}
+						]
+					});
+				</script>
+			[%/site_value%]
+			[%/param%]
+		[%/top_sellers%]
+
+		[%/param%]
+	[%/advert%]
+[%/if%]
+
+[%if [@CONFIG:hide_todaydeals@] ne '1'%]
+	[%advert type:'product' limit:'15' template:'' ad_group:'todays-deals'%]
+		[%param *header%]
+			<!-- Todays Deals -->
+			<section class="wrapper-popular fadeinslow">
+				<div class="container text-center">
+					<h3 class="title hidden-xs">Todays Deals</h3>
+					<div class="product-slider-todays-deals single-item" aria-label="Todays Deals">
+		[%/param%]
+		[%param footer%]
+					</div>
+					[%if [@CONFIG:link_for_todaydeals@] ne ''%]
+						<div class="mt-5">
+							<!-- <a class="btn btn-primary" href="[@CONFIG:link_for_todaydeals@]">VIEW ALL TODAYS DEALS</a> -->
+							<a class="btn btn-primary" href="/todays-deal/">VIEW ALL TODAYS DEALS</a>
+						</div>
+					[%/if%]
+				</div>
+			</section>
+			[%site_value id:'footer_javascript'%]
+				<script>
+				$('.wrapper-popular .product-slider-todays-deals').slick({
+					slidesToShow: 5,
+					slidesToScroll: 3,
+					autoplay: true,
+					autoplaySpeed: 4000,
+					arrows: false,
+					dots:true,
+					swipeToSlide: true,
+					responsive: [
+						{
+							breakpoint: 991,
+							settings: {
+								slidesToShow: 3,
+								slidesToScroll: 3,
+								autoplay: false
+							}
+						},{
+							breakpoint: 500,
+							settings: {
+								slidesToShow: 2,
+								slidesToScroll: 2
+							}
+						}
+					]
+				});
+			</script>
+			[%/site_value%]
+		[%/param%]
+	[%/advert%]
+[%/if%]
+
+[%if [@CONFIG:hide_essentialdeals@] ne '1'%]
+	[%advert type:'product' limit:'15' template:'' ad_group:'essential-deals'%]
+		[%param *header%]
+			<!-- Essential Deals -->
+			<section class="wrapper-popular fadeinslow">
+				<div class="container text-center">
+					<h3 class="title hidden-xs">Essential Deals</h3>
+					<div class="product-slider-essential-deals single-item" aria-label="Essential Deals">
+		[%/param%]
+		[%param footer%]
+					</div>
+					[%if [@CONFIG:link_for_essentialdeals@] ne ''%]
+						<div class="mt-5">
+							<a class="btn btn-primary" href="[@CONFIG:link_for_essentialdeals@]">VIEW ALL ESSENTIAL DEALS</a>
+						</div>
+					[%/if%]
+				</div>
+			</section>
+			[%site_value id:'footer_javascript'%]
+				<script>
+				$('.wrapper-popular .product-slider-essential-deals').slick({
+					slidesToShow: 5,
+					slidesToScroll: 3,
+					autoplay: true,
+					autoplaySpeed: 4000,
+					arrows: false,
+					dots:true,
+					swipeToSlide: true,
+					responsive: [
+						{
+							breakpoint: 991,
+							settings: {
+								slidesToShow: 3,
+								slidesToScroll: 3,
+								autoplay: false
+							}
+						},{
+							breakpoint: 500,
+							settings: {
+								slidesToShow: 2,
+								slidesToScroll: 2
+							}
+						}
+					]
+				});
+			</script>
+			[%/site_value%]
+		[%/param%]
+	[%/advert%]
+[%/if%]
+
+[%if [@CONFIG:hide_featuredads@] ne '1'%]
+	[%advert type:'text' template:'featured-ads' limit:'7' ad_group:'home_ad_units'%]
+		[%param *header%]
+			<!-- Featured Adverts -->
+			[%if [@total_showing@] eq '1'%]
+				<style>
+					.wrapper-featured-grid .grid-item {
+						width: 100%;
+					}
+				</style>
+			[%/if%]
+			[%if [@total_showing@] eq '2' OR [@total_showing@] eq '4'%]
+				<style>
+					.wrapper-featured-grid .grid-item {
+						width: 50%;
+					}
+				</style>
+			[%/if%]
+			[%if [@total_showing@] eq '3' OR [@total_showing@] eq '6'%]
+				<style>
+					.wrapper-featured-grid .grid-item {
+						width: 33.3333%;
+					}
+				</style>
+			[%/if%]
+			[%if [@total_showing@] eq '5'%]
+				<style>
+					.wrapper-featured-grid .grid-item {
+						width: 50%;
+					}
+					.wrapper-featured-grid .grid-item:nth-child(n+3) {
+						width: 33.3333%;
+					}
+				</style>
+			[%/if%]
+			[%if [@total_showing@] eq '7'%]
+				<style>
+				.wrapper-featured-grid .grid-item {
+					width: 50%;
+				}
+				.wrapper-featured-grid .grid-item:nth-child(3),
+				.wrapper-featured-grid .grid-item:nth-child(4),
+				.wrapper-featured-grid .grid-item:nth-child(5) {
+					width: 33.333%;
+				}
+				</style>
+			[%/if%]
+			<section class="wrapper-featured-grid fadeinslow">
+				<div class="container">
+		[%/param%]
+		[%param *footer%]
+				</div>
+			</section>
+		[%/param%]
+	[%/advert%]
+	
+[%/if%]
+
+[%if [@CONFIG:hide_homeandgarden@] ne '1'%]
+	[%advert type:'product' limit:'15' template:'' ad_group:'home-and-garden'%]
+		[%param *header%]
+			<!-- Home & Garden -->
+			<section class="wrapper-popular fadeinslow">
+				<div class="container text-center">
+					<h3 class="title hidden-xs">Home & Garden</h3>
+					<div class="product-slider-home-and-garden single-item" aria-label="Home & Garden">
+		[%/param%]
+		[%param footer%]
+					</div>
+				</div>
+			</section>
+			[%site_value id:'footer_javascript'%]
+				<script>
+				$('.wrapper-popular .product-slider-home-and-garden').slick({
+					slidesToShow: 5,
+					slidesToScroll: 3,
+					autoplay: true,
+					autoplaySpeed: 4000,
+					arrows: false,
+					dots:true,
+					swipeToSlide: true,
+					responsive: [
+						{
+							breakpoint: 991,
+							settings: {
+								slidesToShow: 3,
+								slidesToScroll: 3,
+								autoplay: false
+							}
+						},{
+							breakpoint: 500,
+							settings: {
+								slidesToShow: 2,
+								slidesToScroll: 2
+							}
+						}
+					]
+				});
+			</script>
+			[%/site_value%]
+		[%/param%]
+	[%/advert%]
+[%/if%]
+
+[%if [@CONFIG:hide_comingsoon@] ne '1'%]
+	[%advert type:'product' limit:'15' template:'' ad_group:'coming-soon'%]
+		[%param *header%]
+			<!-- Coming Soon -->
+			<section class="wrapper-popular fadeinslow">
+				<div class="container text-center">
+					<h3 class="title hidden-xs">Coming Soon</h3>
+					<div class="product-slider-coming-soon single-item" aria-label="Coming Soon">
+		[%/param%]
+		[%param footer%]
+					</div>
+					<!-- [%if [@CONFIG:link_for_comingsoon@] ne ''%]
+						<div class="mt-5">
+							<a class="btn btn-primary" href="[@CONFIG:link_for_comingsoon@]">VIEW ALL COMING SOON</a>
+						</div>
+					[%/if%] -->
+				</div>
+			</section>
+			[%site_value id:'footer_javascript'%]
+				<script>
+				$('.wrapper-popular .product-slider-coming-soon').slick({
+					slidesToShow: 5,
+					slidesToScroll: 3,
+					autoplay: true,
+					autoplaySpeed: 4000,
+					arrows: false,
+					dots:true,
+					swipeToSlide: true,
+					responsive: [
+						{
+							breakpoint: 991,
+							settings: {
+								slidesToShow: 3,
+								slidesToScroll: 3,
+								autoplay: false
+							}
+						},{
+							breakpoint: 500,
+							settings: {
+								slidesToShow: 2,
+								slidesToScroll: 2
+							}
+						}
+					]
+				});
+			</script>
+			[%/site_value%]
+		[%/param%]
+	[%/advert%]
+[%/if%]
+
+
+[%if [@CONFIG:hide_featuredproducts@] ne '1'%]
+	[%advert type:'product' limit:'15' template:'' ad_group:''%]
+		[%param *header%]
+			<!-- Featured Products -->
+			<section class="wrapper-popular fadeinslow">
+				<div class="container text-center">
+					<h3 class="title hidden-xs">Featured Products</h3>
+					<div class="product-slider single-item" aria-label="Featured Products">
+		[%/param%]
+		[%param footer%]
+					</div>
+					<!-- [%if [@CONFIG:link_for_featuredproducts@] ne ''%]
+						<div class="mt-5">
+							<a class="btn btn-primary" href="[@CONFIG:link_for_featuredproducts@]">VIEW ALL FEATURED PRODUCTS</a>
+						</div>
+					[%/if%] -->
+				</div>
+			</section>
+			[%site_value id:'footer_javascript'%]
+				<script>
+				$('.wrapper-popular .product-slider').slick({
+					slidesToShow: 5,
+					slidesToScroll: 3,
+					autoplay: true,
+					autoplaySpeed: 4000,
+					arrows: false,
+					dots:true,
+					swipeToSlide: true,
+					responsive: [
+						{
+							breakpoint: 991,
+							settings: {
+								slidesToShow: 3,
+								slidesToScroll: 3,
+								autoplay: false
+							}
+						},{
+							breakpoint: 500,
+							settings: {
+								slidesToShow: 2,
+								slidesToScroll: 2
+							}
+						}
+					]
+				});
+			</script>
+			[%/site_value%]
+		[%/param%]
+	[%/advert%]
+[%/if%]
+
+[%/if%]
+
+[%if [@CONFIG:hide_brands@] ne '1'%]
+	[%thumb_list type:'content' content_type:'brand' template:'brand' limit:'10' sortby:'sortorder-desc'%]
+		[%param *header%]
+			<!-- Brands -->
+			<div class="wrapper-brands fadeinslow">
+				<div class="container">
+					<h3 class="text-center title">Our Brands</h3>
+					<div class="row brands-slider">
+		[%/param%]
+		[%param *footer%]
+					</div>
+				</div>
+			</div>
+			[%site_value id:'footer_javascript'%]
+				<script>
+					$('.wrapper-brands .brands-slider').slick({
+						slidesToShow: 6,
+						slidesToScroll: 3,
+						autoplay: false,
+						arrows: false,
+						dots:true,
+						responsive: [
+							{
+								breakpoint: 992,
+								settings: {
+									slidesToShow: 4,
+									slidesToScroll: 4
+								}
+							},{
+								breakpoint: 600,
+								settings: {
+									slidesToShow: 3,
+									slidesToScroll: 3
+								}
+							},{
+								breakpoint: 450,
+								settings: {
+									slidesToShow: 2,
+									slidesToScroll: 2
+								}
+							},{
+								breakpoint: 300,
+								settings: {
+									slidesToShow: 1,
+									slidesToScroll: 1
+								}
+							}
+						]
+					});
+				</script>
+			[%/site_value%]
+		[%/param%]
+	[%/thumb_list%]
+[%/if%]
+
+[%if [@page_content@]%]
+	<!-- Home Description -->
+	<section id="homepage-content" class="n-responsive-content fadeinslow" aria-label="Main description">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 text-center">[@page_content@]</div>
+			</div>
+		</div>
+	</section>
+[%/if%]

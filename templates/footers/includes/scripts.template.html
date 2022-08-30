@@ -1,0 +1,77 @@
+[%cdn_asset html:'1' type:'js' library:'jquery' version:'1.11.3'%]jquery.min.js[%/cdn_asset%]
+[%cdn_asset html:'1' type:'js' library:'fancybox' version:'2.1.5'%]jquery.fancybox.pack.js[%/cdn_asset%]
+[%NETO_JS html:'1' id:'main' /%]
+[%cdn_asset html:'1' type:'js' library:'bootstrap' version:'3.3.6'%]bootstrap.min.js[%/cdn_asset%]
+<script type="text/javascript" src="[%ntheme_asset%]js/custom.js[%/ntheme_asset%]"></script>
+[%cdn_asset html:'1' type:'js' library:'jquery_ui' version:'1.11.1'%]js/jquery-ui-1.8.18.custom.min.js[%/cdn_asset%]
+<script type="text/javascript" src="[%ntheme_asset%]js/slick/slick.min.js[%/ntheme_asset%]"></script>
+[%cdn_asset html:'1' type:'js' library:'jquery_cookie'%]jquery.cookie.js[%/cdn_asset%]
+
+[%if [@CONFIG:hide_salesticker@] ne '1'%]
+	<link rel="stylesheet" type="text/css" href="//cdn.neto.com.au/assets/neto-cdn/netoTicker/1.0.0/netoTicker.css" media="all"/>
+	<script type="text/javascript" src="//cdn.neto.com.au/assets/neto-cdn/netoTicker/1.0.0/netoTicker.js"></script>
+[%/if%]
+
+<script type="text/javascript" src="[%ntheme_asset%]js/jquery.jqZoom.js[%/ntheme_asset%]"></script>
+
+[%SITE_VALUE id:'footer_javascript' type:'load'/%]
+[%if [@form:disable_scripts@] ne 'true'%]
+<!-- Analytics -->
+[%tracking_code type:'Visitor' /%]
+[%/if%]
+<div class="npopup" style="" role="alertdialog" aria-atomic="true" aria-label="Popup" aria-describedby="npopupDesc" tabindex="-1">
+	<a href="javascript:void(0);" class="npopup-btn-close" role="button" aria-label="Close popup"></a>
+	<div class="npopup-body" id="npopupDesc"></div>
+</div>
+<div class="nactivity"><i class="fa fa-spinner fa-spin fa-inverse fa-3x fa-fw"></i></div>
+
+<!-- Quantity Field -->
+[%if [@config:current_page_type@] ne 'product'%]
+<script>
+	$(document).on('click', '.quantity-field a', function(e) {
+		e.preventDefault();
+		var vals = $('input.form-control.qty-quick').val();
+		var $max = 100;
+		if (typeof $('input.form-control.qty-quick').attr('max') != 'undefined') {
+				$max = parseInt($('input.form-control.qty-quick').attr('max'));
+		}
+		if ($(this).hasClass('qty-minus')) {
+				vals = parseInt(vals) + 1;
+		} else if (vals > 1) {
+				vals = parseInt(vals) - 1;
+		}
+		if (vals > $max)
+				vals = $max;
+		var vals = $('input.form-control.qty-quick').val(vals);
+	});
+
+</script>
+<script>
+	$(document).on('click', 'button.addtocart', function(e) {
+		e.preventDefault();
+		$(this).addClass('disabled');
+		$(this).attr('disabled', 'disabled');
+		$(this).html($(this).attr('data-loading-text'));
+		setTimeout(function() {
+			$('#quickShopModal').modal('hide');
+		}, 2000);
+	});
+</script>
+[%/if%]
+
+
+[%if [@user:username@] ne 'noreg'%]
+<script type="text/javascript">
+	// $(document).ready(function($) {
+	// 	$('.guest-view-content').remove();
+	// 	$('.customer-view-content').removeClass('customer-view-content');
+	// });
+</script>
+[%else%]
+<script type="text/javascript">
+	// $(document).ready(function($) {
+	// 	$('.customer-view-content').remove();
+	// 	$('.guest-view-content').removeClass('guest-view-content');
+	// });
+</script>
+[%/if%]

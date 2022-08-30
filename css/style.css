@@ -1,0 +1,546 @@
+body {
+	font-family: 'Muli', sans-serif /*{body-font-family}*/;
+	font-size: 14px /*{body-font-size}*/;
+	color: #252525 /*{body-font-colour}*/;
+	background-color: #ffffff;
+}
+/*------------- Text Styling -------------*/
+a,
+.pagination > li > a,
+.pagination > li > span  {
+	color: #252525 /*{link-text-colour}*/;
+}
+a:hover,
+a:focus {
+	color: #252525 /*{link-text-colour}*/;
+	opacity:0.8;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+	font-family: 'Montserrat', sans-serif /*{headers-font-family}*/;
+	color: #333333 /*{headers-colour}*/;
+}
+h1,
+.h1 {
+	font-size: 32px /*{header-1-font-size}*/;
+}
+h2,
+.h2 {
+	font-size: 24px /*{header-2-font-size}*/;
+}
+h3,
+.h3 {
+	font-size: 20px /*{header-3-font-size}*/;
+}
+h4,
+.h4 {
+	font-size: 18px /*{header-4-font-size}*/;
+}
+h5,
+.h5 {
+	font-size: 15px /*{header-5-font-size}*/;
+}
+/*------------- Button Styling -------------*/
+.btn-default,
+.label-default,
+body.active #mobile-menu .closebtn {
+	color: #ffffff /*{btn-default-text-colour}*/;
+	background-color: #373842 /*{btn-default-bg-colour}*/;
+}
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-default.active,
+.btn-default:active:hover
+.open .dropdown-toggle.btn-default,
+.btn-default.disabled,
+.btn-default[disabled],
+fieldset[disabled] .btn-default,
+.btn-default.disabled:hover,
+.btn-default[disabled]:hover,
+fieldset[disabled] .btn-default:hover,
+.btn-default.disabled:focus,
+.btn-default[disabled]:focus,
+fieldset[disabled] .btn-default:focus,
+.btn-default.disabled:active,
+.btn-default[disabled]:active,
+fieldset[disabled] .btn-default:active,
+.btn-default.disabled.active,
+.btn-default[disabled].active,
+fieldset[disabled] .btn-default.active {
+	color: #ffffff /*{btn-default-text-colour-hover}*/;
+	background-color: #26272d /*{btn-default-bg-colour-hover}*/;
+}
+.btn-primary,
+.btn-success,
+.label-primary,
+.label-success,
+.blog-thumbnail .blog-date,
+#wrapper-staticmenu .navbar-nav > li > a:after,
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus,
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+	color: #ffffff /*{btn-primary-text-colour}*/;
+	background-color: rgba(149, 182, 117, 1) /*{btn-primary-bg-colour}*/;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.btn-primary:active:hover,
+.open .dropdown-toggle.btn-primary,
+.btn-primary.disabled,
+.btn-primary[disabled],
+fieldset[disabled] .btn-primary,
+.btn-primary.disabled:hover,
+.btn-primary[disabled]:hover,
+fieldset[disabled] .btn-primary:hover,
+.btn-primary.disabled:focus,
+.btn-primary[disabled]:focus,
+fieldset[disabled] .btn-primary:focus,
+.btn-primary.disabled:active,
+.btn-primary[disabled]:active,
+fieldset[disabled] .btn-primary:active,
+.btn-primary.disabled.active,
+.btn-primary[disabled].active,
+fieldset[disabled] .btn-primary.active,
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active,
+.btn-success.active,
+.open .dropdown-toggle.btn-success,
+.btn-success.disabled,
+.btn-success[disabled],
+fieldset[disabled] .btn-success,
+.btn-success.disabled:hover,
+.btn-success[disabled]:hover,
+fieldset[disabled] .btn-success:hover,
+.btn-success.disabled:focus,
+.btn-success[disabled]:focus,
+fieldset[disabled] .btn-success:focus,
+.btn-success.disabled:active,
+.btn-success[disabled]:active,
+fieldset[disabled] .btn-success:active,
+.btn-success.disabled.active,
+.btn-success[disabled].active,
+fieldset[disabled] .btn-success.active {
+	color: #ffffff /*{btn-primary-text-colour-hover}*/;
+	background-color: rgba(149, 182, 117, 1) /*{btn-primary-bg-colour-hover}*/;
+}
+.btn-warning,
+.label-warning {
+	color: #ffffff /*{btn-warning-text-colour}*/;
+	background-color: #f0ad4e /*{btn-warning-bg-colour}*/;
+}
+.thumbnail-badge.label-warning span {
+	color: #ffffff /*{btn-warning-text-colour}*/;
+}
+.btn-warning:hover,
+.btn-warning:focus,
+.btn-warning:active,
+.btn-warning.active,
+.btn-warning:active:hover,
+.open .dropdown-toggle.btn-warning,
+.btn-warning.disabled,
+.btn-warning[disabled],
+fieldset[disabled] .btn-warning,
+.btn-warning.disabled:hover,
+.btn-warning[disabled]:hover,
+fieldset[disabled] .btn-warning:hover,
+.btn-warning.disabled:focus,
+.btn-warning[disabled]:focus,
+fieldset[disabled] .btn-warning:focus,
+.btn-warning.disabled:active,
+.btn-warning[disabled]:active,
+fieldset[disabled] .btn-warning:active,
+.btn-warning.disabled.active,
+.btn-warning[disabled].active,
+fieldset[disabled] .btn-warning.active {
+	color: #ffffff /*{btn-warning-text-colour-hover}*/;
+	background-color: #ed9c28 /*{btn-warning-bg-colour-hover}*/;
+}
+.btn-danger,
+.label-danger {
+	color: #ffffff /*{btn-danger-text-colour}*/;
+	background-color: #d9534f /*{btn-danger-bg-colour}*/;
+}
+.thumbnail-badge.label-danger span {
+	color: #ffffff /*{btn-danger-text-colour}*/;
+}
+.btn-danger:hover,
+.btn-danger:focus,
+.btn-danger:active,
+.btn-danger.active,
+.btn-danger:active:hover,
+.open .dropdown-toggle.btn-danger,
+.btn-danger.disabled,
+.btn-danger[disabled],
+fieldset[disabled] .btn-danger,
+.btn-danger.disabled:hover,
+.btn-danger[disabled]:hover,
+fieldset[disabled] .btn-danger:hover,
+.btn-danger.disabled:focus,
+.btn-danger[disabled]:focus,
+fieldset[disabled] .btn-danger:focus,
+.btn-danger.disabled:active,
+.btn-danger[disabled]:active,
+fieldset[disabled] .btn-danger:active,
+.btn-danger.disabled.active,
+.btn-danger[disabled].active,
+fieldset[disabled] .btn-danger.active {
+	color: #ffffff /*{btn-danger-text-colour-hover}*/;
+	background-color: #d2322d /*{btn-danger-bg-colour-hover}*/;
+}
+.btn-info,
+.label-info {
+	color: #ffffff /*{btn-info-text-colour}*/;
+	background-color: #8b8c9a /*{btn-info-bg-colour}*/;
+}
+.thumbnail-badge.label-info span {
+	color: #ffffff /*{btn-info-text-colour}*/;
+}
+.btn-info:hover,
+.btn-info:focus,
+.btn-info:active,
+.btn-info.active,
+.btn-info:active:hover,
+.open .dropdown-toggle.btn-info,
+.btn-info.disabled,
+.btn-info[disabled],
+fieldset[disabled] .btn-info,
+.btn-info.disabled:hover,
+.btn-info[disabled]:hover,
+fieldset[disabled] .btn-info:hover,
+.btn-info.disabled:focus,
+.btn-info[disabled]:focus,
+fieldset[disabled] .btn-info:focus,
+.btn-info.disabled:active,
+.btn-info[disabled]:active,
+fieldset[disabled] .btn-info:active,
+.btn-info.disabled.active,
+.btn-info[disabled].active,
+fieldset[disabled] .btn-info.active {
+	color: #ffffff /*{btn-info-text-colour-hover}*/;
+	background-color: #9b9cab /*{btn-info-bg-colour-hover}*/;
+}
+.btn-inverse {
+	color: #333333 /*{btn-inverse-text-colour}*/;
+  border-color: #333333 /*{btn-inverse-border-colour}*/;
+	background-color: #ffffff;
+}
+/* Pagination */
+.pagination > li:first-child > a,
+.pagination > li:first-child > span,
+.pagination > li:last-child > a,
+.pagination > li:last-child > span {
+	border-radius: 50%;
+}
+.pagination > li > a,
+.pagination > li > span {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  padding: 0;
+  color: #989898;
+  background-color:#fff;
+  margin: 0 3px;
+  border: none;
+  display: inline-block;
+  text-align: center;
+}
+/*--------- HEADER ---------*/
+/* Annoucement Bar */
+#wrapper-announcement {
+  background-color: #373842 /*{announcement-bg}*/;
+}
+#wrapper-announcement,
+#wrapper-announcement a {
+  color: #ffffff /*{announcement-text}*/;
+}
+/* Header Cart */
+#header-cart span,
+.mob-cart span.cart-count {
+  background-color: rgba(149, 182, 117, 1) /*{btn-primary-bg-colour}*/;
+  color: #ffffff /*{btn-primary-text-colour}*/;
+}
+/* Main Menu */
+#wrapper-staticmenu .navbar-nav > li > a {
+  color: #363741 /*{header-menu-link}*/;
+	font-family: 'Montserrat', sans-serif /*{headers-font-family}*/;
+}
+#wrapper-staticmenu .navbar-nav > li:hover > a,
+#mobile-menu a:focus,
+header .list-social a:hover .fa,
+footer .list-social .fa:hover {
+  color: rgba(149, 182, 117, 1) /*{header-menu-link-hover}*/;
+}
+/*--------- HOME PAGE ---------*/
+.carousel-caption-wrapper,
+.wrapper-featured-grid .caption,
+.wrapper-featured-grid .grid-item:hover:before,
+#instafeed > a:hover:after {
+	background-color: rgba(55, 56, 66, 0.9) /*{carousel-bg-colour}*/;
+}
+.carousel-caption h1,
+.carousel-caption h1 a,
+.carousel-caption p,
+.wrapper-featured-grid .caption h2.headline,
+.wrapper-featured-grid .caption .linktext,
+#instafeed > a span.likes {
+	color: #ffffff /*{carousel-text-colour}*/;
+}
+/*--------- FOOTER ---------*/
+/* USPS */
+.wrapper-usps .fa {
+  color: rgba(0, 153, 68, 1) /*{usp-colour}*/;
+}
+form.buying-options .input-group {
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 0px 5px;
+}
+
+form.buying-options .input-group input.button-minus, form.buying-options .input-group input.button-plus {
+    width: 40px;
+    height: 40px;
+    padding: 0px 10px;
+    background: #ededed;
+    border: solid 1px #ededed;
+}
+
+form.buying-options .input-group input.quantity-field {
+    margin: 0px;
+    text-align: center;
+    width: calc(100% - 80px);
+    border: solid 1px #ededed;
+    appearance: textfield;
+    -webkit-appearance: textfield;
+}
+
+form.buying-options .input-group input.quantity-field::-webkit-outer-spin-button,
+form.buying-options .input-group input.quantity-field::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.buying-options .btn-group .btn {
+    width: 50%;
+    font-size: 12px;
+    padding: 10px 10px;
+    margin: 0px 5px !important;
+}
+
+.buying-options .btn-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.d-flex-price {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    padding-top: 25px;
+}
+.d-flex-price .pro-sku {position: absolute;top: -20px;}
+.d-flex-price .col-xs-6 {
+    padding: 0px 5px;
+    text-align: left;
+}
+
+.d-flex-price .col-xs-6 a.wishlist_toggle {
+    background: transparent;
+    padding: 0px;
+    color: orange;
+    line-height: normal;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.d-flex-price .col-xs-6 a.wishlist_toggle span.remove{
+    color: gray;
+}
+
+.wishlist-stock {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+.pro-sku {
+    margin-bottom: 5px;
+}
+
+p.price.pro-price a {
+    font-size: 13px;
+}
+
+p.price.pro-price a span {
+    color: #3349eb !important;
+}
+.stock-level-grid {
+    clear: both;
+}
+
+.stock-level-grid ul {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0px;
+    margin: 0px 0px 30px;
+    flex-wrap: wrap;
+}
+
+.stock-level-grid ul li {
+    width: 25%;
+    padding: 0px 15px;
+    text-align: center;
+}
+
+.stock-level-grid ul li i {
+    margin-right: 10px;
+}
+
+.font-color-yellow:before {color: orange;}
+.mt-5 a.btn.btn-primary {
+    background-color: #373842;
+}
+button.addtocart:hover {
+    background: #000;
+}
+
+.buying-options .btn-group .btn {
+    font-size: 11px;
+}
+.list-whishlist a.wishlist_toggle {
+    width: auto;
+    display: inline-block;
+    background: #f4f4f4;
+    color: #f0ad4e;
+}
+.lSAction > a {
+    background-image: none !important;
+    line-height: 30px;
+}
+div#onload-popup {
+    z-index: 999999;
+}
+.wishlist-stock.thumb-whishlist a.wishlist_toggle {
+    width: auto;
+    background: #e5e5e5;
+    color: orange;
+}
+
+.wishlist-stock.thumb-whishlist a.wishlist_toggle span.remove {
+    color: #999;
+}
+a.btn.btn-primary:hover {
+    background-color: #009640 !important;
+}
+.viewby.btn-group a i {
+    font-size: 27px;
+}
+
+.viewby.btn-group a {
+    padding: 5px;
+}
+.modal.in .modal-dialog {top: 50%;transform: translatey(-50%);}
+
+.d-flex-price .col-xs-6 a.wishlist_toggle + span {font-size: 13px;}
+
+.form-group.password-field {position: relative;}
+
+.form-group.password-field i#togglePassword {position: absolute;top: 26px;right: 1px;width: 40px;text-align: center;height: 40px;vertical-align: middle;line-height: 40px;display: inline-block;font-size: 22px;cursor: pointer;z-index: 9999;}
+
+.form-group.password-field input#password {padding-right: 40px;}
+
+div#productcollapse1 .panel-body * {font-size: 14px;text-align: left;}
+
+#productaccordion .panel-body img {max-width: 100% !important;width: auto !important;}
+
+.custom-product-description a.panel-title, .custom-product-description a.panel-title:hover {
+    font-size: 30px;font-weight: 600;text-decoration: none;color: #000;}
+
+.custom-product-description ul li  a {font-size: 14px;}
+
+.custom-product-description .panel-body * {text-align: left;font-size: 14px;}
+
+.custom-product-description .panel-body {padding: 0px;}
+
+.custom-product-description .panel-body img {max-width: 100% !important;width: auto !important;}
+
+.custom-product-description .panel.panel-default {border: none;}
+a.btn.btn-primary.btn-loads.seebuying-options-btn {padding: 10px 5px;}
+.cartpage div#header-cart ul.dropdown-menu {
+    display: none !important;
+}
+
+.cartpage div#header-cart.open ul.dropdown-menu {
+    display: block !important;
+}
+/*.slick-product-quick-view-nav {*/
+/*    visibility: visible !important;*/
+/*    opacity: 1 !important;*/
+/*}*/
+.best-seller-category + .category-content.col-xs-12.thumb,
+.todays-deals-category + .category-content.col-xs-12.thumb{
+    display: none;
+}
+@media only screen and (max-width: 767px){
+p.price.pro-price a {
+    font-size: 14px;
+}
+.stock-level-grid ul li {
+    width: 100%;
+}
+.d-flex-price .col-xs-6 {position: static;}
+
+.d-flex-price .pro-sku {top: 0px;}
+div#quickShopModal {
+    top: 4%;
+}
+#quickShopModal .modal-dialog {
+    top: 0px;
+    transform: none;
+}
+.categories-grid-page .col-6 {
+    width: 100%;
+}
+.category-content.thumb_list article.col-xs-12 {
+    padding: 0px;
+}
+
+.category-content.thumb_list article.col-xs-12 .panel-body .col-xs-4.col-sm-3, 
+.category-content.thumb_list article.col-xs-12 .panel-body .col-xs-8.col-sm-6 {
+    width: 100%;
+}
+
+.category-content.thumb_list article.col-xs-12 .panel-body .col-xs-4.col-sm-3 img.product-image {
+    margin: 0px auto;
+}
+
+.category-content.thumb_list article.col-xs-12 .panel-body .text-right {
+    text-align: left !important;
+}
+
+.category-content.thumb_list article.col-xs-12 .panel-footer.text-right {
+    text-align: center !important;
+}
+}

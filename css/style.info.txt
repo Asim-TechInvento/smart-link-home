@@ -1,0 +1,63 @@
+/* Website
+===========================================================================================================*/
+
+/* Header
+-----------------------------------------------------------------------------------------------------------*/
+announcement-bg:            Announcement Bar Background Colour
+announcement-text:          Announcement Bar Text Colour
+
+header-menu-link:           Main Menu Link Colour
+header-menu-link-hover:     Main Menu Link Hover Colour
+
+
+/* Home Page
+-----------------------------------------------------------------------------------------------------------*/
+carousel-bg-colour:         Adverts Background Colour
+carousel-text-colour:				Adverts Text Colour
+
+/* Footer
+-----------------------------------------------------------------------------------------------------------*/
+usp-colour:                  Footer USPs Icon Colour
+
+/* Typography
+-----------------------------------------------------------------------------------------------------------*/
+body-font-colour:					    Body Text Colour
+link-text-colour:					    Link Text Colour
+body-font-family:					    Body Font Family
+body-font-size:						    Body Font Size
+
+headers-colour:					  	Header Text Colour
+headers-font-family:				Header Font Family
+header-1-font-size:					Header 1 Font Size (H1)
+header-2-font-size:					Header 2 Font Size (H2)
+header-3-font-size:					Header 3 Font Size (H3)
+header-4-font-size:					Header 4 Font Size (H4)
+header-5-font-size:					Header 5 Font Size (H5)
+
+
+/* Buttons
+-----------------------------------------------------------------------------------------------------------*/
+btn-primary-bg-colour:				      Primary Button Background Colour
+btn-primary-text-colour:			      Primary Button Text Colour
+btn-primary-bg-colour-hover:		    Primary Button Background Colour Hover
+btn-primary-text-colour-hover:		  Primary Button Text Colour Hover
+
+btn-default-bg-colour:				      Secondary Button Background Colour
+btn-default-text-colour:			      Secondary Button Text Colour
+btn-default-bg-colour-hover:		    Secondary Button Background Colour Hover
+btn-default-text-colour-hover:		  Secondary Button Text Colour Hover
+
+btn-warning-text-colour:			     Warning Button Text Colour
+btn-warning-bg-colour:				     Warning Button Background Colour
+btn-warning-text-colour-hover:		 Warning Button Text Colour Hover
+btn-warning-bg-colour-hover:		   Warning Button Background Colour Hover
+
+btn-danger-text-colour:				   Danger Button Text Colour
+btn-danger-bg-colour:				     Danger Button Background Colour
+btn-danger-text-colour-hover:		 Danger Button Text Colour Hover
+btn-danger-bg-colour-hover:			 Danger Button Background Colour Hover
+
+btn-info-text-colour:				     Information Button Text Colour
+btn-info-bg-colour:					     Information Button Background Colour
+btn-info-text-colour-hover:			 Information Button Text Colour Hover
+btn-info-bg-colour-hover:			   Information Button Background Colour Hover

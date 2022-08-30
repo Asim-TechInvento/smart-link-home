@@ -1,0 +1,209 @@
+[%site_value id:'footer_javascript'%]
+	<script type="text/javascript" language="javascript">
+		$(document).ready(function() {
+			$.product_variationInit({
+				'loadtmplates': ['_buying_options_quick_view', '_images_quick_view','_header_quick_view'],
+				'fns' : {
+					'onLoad' : function () {
+						$('.addtocart').button("loading");
+						$('.variation-wrapper').addClass('disable-interactivity');
+					},
+					'onReady' : function () {
+						$('.addtocart').button("reset");
+						$('.zoom').zoom();
+						$('.variation-wrapper').removeClass('disable-interactivity');
+						
+							$('.slick-main-quick-view-img').slick({
+								slidesToShow: 1,
+								slidesToScroll: 1,
+								arrows: true,
+								fade: true,
+								infinite: true,
+								asNavFor: '.slick-product-quick-view-nav',
+								nextArrow: '<i class="fa fa-angle-right"></i>',
+								prevArrow: '<i class="fa fa-angle-left"></i>',
+								responsive: [
+									{
+										breakpoint: 991,
+										settings: {
+											//xs view settings for main image
+											swipe: true,
+											swipeToSlide: true,
+										}
+									}
+								]
+							});
+							$('.slick-product-quick-view-nav').slick({
+								slidesToShow: 4,
+								slidesToScroll: 1,
+								asNavFor: '.slick-main-quick-view-img',
+								dots: false,
+								arrows: true,
+								nextArrow: '<i class="fa fa-angle-down"></i>',
+								prevArrow: '<i class="fa fa-angle-up"></i>',
+								vertical: true,
+								verticalSwiping: true,
+								focusOnSelect: true,
+								responsive: [
+									{
+										breakpoint: 991,
+										settings: {
+											//xs view settings for nav
+											slidesToShow: 4,
+											slidesToScroll: 1,
+											vertical: false,
+											verticalSwiping: false,
+											focusOnSelect: true
+										}
+									}
+								]
+							});
+					    $('.nCustom-slick-all').hide().css('visibility','visible').fadeIn('slow');
+						setTimeout(function(){$('.slick-main-quick-view-img, .slick-product-quick-view-nav').slick('refresh');}, 300);
+						
+						$('#quickShopModal .addtocart').on('click', function () {
+							var cart = $('#header-cart');
+							var imgtodrag = $(".slick-main-quick-view-img .slick-active img.product-image-small");
+							if (imgtodrag) {
+								var imgclone = imgtodrag.clone()
+									.offset({
+									top: imgtodrag.offset().top,
+									left: imgtodrag.offset().left
+								})
+									.css({
+									'opacity': '0.5',
+										'position': 'absolute',
+										'height': '350px',
+										'width': '350px',
+										'z-index': '999999'
+								})
+									.appendTo($('body'))
+									.animate({
+									'top': cart.offset().top + 10,
+										'left': cart.offset().left + 10,
+										'width': 75,
+										'height': 75
+								}, 1000);
+
+								imgclone.animate({
+									'width': 0,
+										'height': 0
+								}, function () {
+									$(this).detach()
+								});
+							}
+						});
+					},
+				}
+			});
+			[%if [@has_components@]%]
+				$.kit_variationInit({});
+			[%/if%]
+		});
+	</script>
+	<script type="text/javascript" src="//cdn.neto.com.au/assets/neto-cdn/zoom/1.4/jquery.zoom-min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.zoom').zoom();
+		});
+	</script>
+	<script>
+		$(document).ready(function(){
+			$("li[role='tab']").click(function(){
+				$("li[role='tab']").attr("aria-selected","false"); //deselect all the tabs
+			 	$(this).attr("aria-selected","true");  // select this tab
+				var tabpanid= $(this).attr("aria-controls"); //find out what tab panel this tab controls
+			   var tabpan = $("#"+tabpanid);
+				$("div[role='tabpanel']").attr("aria-hidden","true"); //hide all the panels
+				tabpan.attr("aria-hidden","false");  // show our panel
+			 });
+		});
+		$('#_jstl__buying_options').on('click', '.wishlist_toggle', function(e){e.preventDefault();})
+	</script>
+
+	<!--Slick-->
+	<script>
+	$('.slick-main-quick-view-img').slick({
+		slidesToShow: 1,
+		slidesToScroll: 1,
+		arrows: true,
+		fade: true,
+		infinite: true,
+		asNavFor: '.slick-product-quick-view-nav',
+		nextArrow: '<i class="fa fa-angle-right"></i>',
+		prevArrow: '<i class="fa fa-angle-left"></i>',
+		responsive: [
+			{
+				breakpoint: 991,
+				settings: {
+					//xs view settings for main image
+					swipe: true,
+					swipeToSlide: true
+				}
+			}
+		]
+	});
+	$('.slick-product-quick-view-nav').slick({
+		slidesToShow: 4,
+		slidesToScroll: 1,
+		asNavFor: '.slick-main-quick-view-img',
+		dots: false,
+		arrows: true,
+		nextArrow: '<i class="fa fa-angle-down"></i>',
+		prevArrow: '<i class="fa fa-angle-up"></i>',
+		vertical: true,
+		verticalSwiping: true,
+		focusOnSelect: true,
+		responsive: [
+			{
+				breakpoint: 991,
+				settings: {
+					//xs view settings for nav
+					slidesToShow: 4,
+					slidesToScroll: 1,
+					vertical: false,
+					verticalSwiping: false,
+					focusOnSelect: true
+
+				}
+			}
+		]
+	});
+	
+	setTimeout(function(){$('.slick-main-quick-view-img, .slick-product-quick-view-nav').slick('refresh');}, 800);
+
+	$('#quickShopModal .addtocart').on('click', function () {
+		var cart = $('#header-cart');
+		var imgtodrag = $(".slick-main-quick-view-img .slick-active img.product-image-small");
+		if (imgtodrag) {
+			var imgclone = imgtodrag.clone()
+				.offset({
+				top: imgtodrag.offset().top,
+				left: imgtodrag.offset().left
+			})
+				.css({
+				'opacity': '0.5',
+					'position': 'absolute',
+					'height': '350px',
+					'width': '350px',
+					'z-index': '999999'
+			})
+				.appendTo($('body'))
+				.animate({
+				'top': cart.offset().top + 10,
+					'left': cart.offset().left + 10,
+					'width': 75,
+					'height': 75
+			}, 1000);
+
+			imgclone.animate({
+				'width': 0,
+					'height': 0
+			}, function () {
+				$(this).detach()
+			});
+		}
+	});
+	</script>
+
+[%/site_value%]

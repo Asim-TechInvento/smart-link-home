@@ -1,0 +1,213 @@
+[%CACHE type:'gallery' id:'[@inventory_id@]'%]
+<article class="wrapper-thumbnail col-xxs-12 col-xs-6 col-sm-4 col-md-4 col-lg-3 fadeinslow yoooooooo category-page" aria-label="Product Thumbnail">
+	<div class="thumbnail">
+		<a href="[@URL@]" class="thumbnail-image">
+			<img src="[%asset_url type:'product' thumb:'thumbL' id:'[@SKU@]'%][%param default%][%cdn_asset html:'0' library:'images'%]default_product.gif[%/cdn_asset%][%end param%][%/asset_url%]" class="product-image" alt="[@model@]">
+		</a>
+		<div class="caption">
+			<h3><a href="[@URL@]" title="[@model@]">[%format type:'text' truemaxlength:'54' rmhtml:'1'%][@model@][%/FORMAT%]</a></h3>
+			<div class="d-flex-price">
+				<div class="col-xs-6">
+					<p class="font-weight-bold font-size-12 pro-sku">SKU: [@SKU@]</p>
+					<p class="price pro-price">
+						<a href="[@URL@]">
+							[%if [@has_child@]%]
+								[%if [@inpromo@]%]
+									From&nbsp;
+									<span>[%format type:'currency'%][@promo_price@][%/format%]</span>
+									<span class="text-muted strike">[%format type:'currency'%][@store_price@][%/format%] [%if [@store_price@] < [@highest_price@]%] - [%format type:'currency'%][@highest_price@][%/format%][%/if%]</span>
+								[%else%]
+									[%set [@highest_price@] %]0[%/set%]
+									[%display_child_products id:'[@sku@]'%]
+										[%param *body%]
+											[%if [@store_price@] > [@^highest_price@]%]
+												[%set [@^highest_price@] %][@store_price@][%/set%]
+											[%/if%]
+										[%/param%]
+									[%/display_child_products%]
+									<span>[%format type:'currency'%][@store_price@][%/format%] [%if [@store_price@] < [@highest_price@]%] - [%format type:'currency'%][@highest_price@][%/format%][%/if%]</span>
+								[%/if%]
+							[%else%]
+								[%if [@inpromo@]%]
+									[%if [@has_child@]%]From&nbsp;[%/if%]
+									<span>[%format type:'currency'%][@promo_price@][%/format%]</span>
+									<span class="text-muted strike">[%format type:'currency'%][@store_price@][%/format%] [%if [@store_price@] < [@highest_price@]%] - [%format type:'currency'%][@highest_price@][%/format%][%/if%]</span>
+								[%else%]
+									[%if [@has_child@]%]From&nbsp;[%/if%]
+									<span>[%format type:'currency'%][@store_price@][%/format%]</span>
+								[%/if%]
+							[%/if%]
+						</a>
+					</p>
+				</div>
+				<div class="col-xs-6">
+					<div class="wishlist-stock">
+						<a class="wishlist_toggle btn btn-lg btn-block btn-warning whltooltips" rel="[@SKU@]"><span class="remove" rel="wishlist_text[@SKU@]"><i class="fa fa-heart"></i></span></a>
+						[%if [@available_preorder_quantity@] > 0 AND [@preorder@] AND [@config:WEBSTORE_USE_PREORDER_QUANTITY@]%]
+							<span><i class="fam fa-angle-left font-color-lightviolet"></i> Pre-order [%if [@arrival_date@]%] - Arrival [%format type:'date'%][@arrival_date@][%/format%][%/if%]</span>
+						[%elseif [@store_quantity@] > 0 AND [@preorder@] AND ![@config:WEBSTORE_USE_PREORDER_QUANTITY@]%]
+							<span><i class="fam fa-angle-left font-color-lightviolet"></i> Pre-order [%if [@arrival_date@]%] - Arrival [%format type:'date'%][@arrival_date@][%/format%][%/if%]</span>
+						[%elseif [@store_quantity@] > 0 AND ![@preorder@] %]
+							<span><i class="fam fa-angle-left font-color-green"></i> In Stock</span>
+						[%elseif [@store_quantity@] < 10 AND [@store_quantity@] > 0 %]
+							<span><i class="fam fa-angle-left font-color-yellow"></i> Limited Stock</span>
+						[%elseif [@store_quantity@] < 1 AND [@config:ALLOW_NOSTOCK_CHECKOUT@] %]
+							<span><i class="fam fa-angle-left font-color-yellow"></i> Backorder</span>
+						[%else%]
+							<span><i class="fam fa-angle-left font-color-red"></i> Sold Out</span>
+						[%/if%]
+					</div>
+				</div>
+			</div>
+			
+			<!-- <div class="mt-3 mb-2">
+				
+			</div> -->
+			<!-- Purchase Logic -->
+			
+			<!-- [%if [@CONFIG:show_thumb_btn@] eq '1'%]
+			<div class="list-button-action">
+				
+					[%if [@extra@] or [@has_child@] or [@editable_bundle@]%]
+
+						<a href="#quickshop" onclick="$.load_ajax_template('_quick_view',{sku: '[@SKU@]'}, {onLoad: function(c){$('#quickShopModal').modal('show');setTimeout(function(){$('.slick-main-img, .slick-product-nav').slick('refresh');}, 300);}})"  title="View [@model@] Quick Shop" class="btn btn-primary btn-block btn-loads mt-2" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>">Quick Shop</a>
+
+						<a href="[@URL@]" title="View [@model@] Buying Options" class="btn btn-primary btn-block btn-loads" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>">More Details</a>
+
+					[%elseif [@available_preorder_quantity@] > 0 AND [@preorder@] AND [@config:WEBSTORE_USE_PREORDER_QUANTITY@]%]
+
+						<a href="#quickshop" onclick="$.load_ajax_template('_quick_view',{sku: '[@SKU@]'}, {onLoad: function(c){$('#quickShopModal').modal('show');setTimeout(function(){$('.slick-main-img, .slick-product-nav').slick('refresh');}, 300);}})"  title="View [@model@] Quick Shop" class="btn btn-primary btn-block btn-loads mt-2" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>">Quick Shop</a>
+
+						<a href="[@URL@]" title="View [@model@] Buying Options" class="btn btn-primary btn-block btn-loads" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>">More Details</a>
+
+							<button type="button" title="Pre-Order [@model@] Now!" class="addtocart btn btn-warning btn-block btn-loads d-none" rel="[@rndm@][@SKU@]" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>">Pre-Order</button>
+
+					[%elseif [@store_quantity@] > 0 AND [@preorder@] AND ![@config:WEBSTORE_USE_PREORDER_QUANTITY@]%]
+
+						<a href="#quickshop" onclick="$.load_ajax_template('_quick_view',{sku: '[@SKU@]'}, {onLoad: function(c){$('#quickShopModal').modal('show');setTimeout(function(){$('.slick-main-img, .slick-product-nav').slick('refresh');}, 300);}})"  title="View [@model@] Quick Shop" class="btn btn-primary btn-block btn-loads mt-2" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>">Quick Shop</a>
+
+						<a href="[@URL@]" title="View [@model@] Buying Options" class="btn btn-primary btn-block btn-loads" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>">More Details</a>
+
+							<button type="button" title="Pre-Order [@model@] Now!" class="addtocart btn btn-warning btn-block btn-loads d-none" rel="[@rndm@][@SKU@]" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>">Pre-Order</button>
+
+					[%elseif [@store_quantity@] > 0 AND ![@preorder@] %]
+
+						<a href="#quickshop" onclick="$.load_ajax_template('_quick_view',{sku: '[@SKU@]'}, {onLoad: function(c){$('#quickShopModal').modal('show');setTimeout(function(){$('.slick-main-img, .slick-product-nav').slick('refresh');}, 300);}})"  title="View [@model@] Quick Shop" class="btn btn-primary btn-block btn-loads mt-2" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>">Quick Shop</a>
+
+						<a href="[@URL@]" title="View [@model@]" class="btn btn-primary btn-block btn-loads" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>">More Details</a>
+
+							<button type="button" title="Add [@model@] to Cart" class="addtocart btn-primary btn btn-block btn-loads d-none" rel="[@rndm@][@SKU@]" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>">Add to Cart</button>
+
+					[%elseif [@store_quantity@] < 1 AND [@config:ALLOW_NOSTOCK_CHECKOUT@] %]
+
+						<a href="#quickshop" onclick="$.load_ajax_template('_quick_view',{sku: '[@SKU@]'}, {onLoad: function(c){$('#quickShopModal').modal('show');setTimeout(function(){$('.slick-main-img, .slick-product-nav').slick('refresh');}, 300);}})"  title="View [@model@] Quick Shop" class="btn btn-primary btn-block btn-loads mt-2" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>">Quick Shop</a>
+
+						<a href="[@URL@]" title="View [@model@] Buying Options" class="btn btn-primary btn-block btn-loads" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>">More Details</a>
+
+							<button type="button" title="Add [@model@] to Cart" class="addtocart btn-primary btn btn-block btn-loads d-none" rel="[@rndm@][@SKU@]" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>">Backorder</button>
+
+					[%else%]
+
+						<a class="notify_popup btn btn-outline-secondary btn-block btn-loads" href="[@url@]" title="Notify Me When [@model@] Is Back In Stock" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>">Out Of Stock</a>
+
+					[%/if%]
+			</div>
+			[%/if%] -->
+			<!-- /Purchase Logic -->
+
+
+
+			[%if [@user:group_id@] ne [@config:hide_pricing@]%]
+                    <form class="buying-options">
+                        <input type="hidden" id="sku[@rndm@][@SKU@]" name="sku[@rndm@][@SKU@]" value="[@SKU@]">
+                        <input type="hidden" id="model[@rndm@][@SKU@]" name="model[@rndm@][@SKU@]" value="[@model@]">
+                        <input type="hidden" id="thumb[@rndm@][@SKU@]" name="thumb[@rndm@][@SKU@]" value="[@thumb@]">
+						[%if [@store_quantity@] > 0 AND [@preorder@] %]
+							<div class="input-group w">
+							  <input type="button" value="-" class="button-minus" data-field="quantity">
+							  <input type="number" min="[@min_qty@]" step="[@multiplier_qty@]" class="quantity-field form-control qty input-lg" id="qty[@rndm@][@SKU@]" name="qty" value="1" size="2"/>
+							  <input type="button" value="+" class="button-plus" data-field="quantity">
+							</div>
+							<div class="btn-group">
+								<button type="button" title="Pre-Order Now!" class="addtocart btn btn-warning btn-loads" rel="[@rndm@][@sku@]" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>">Pre-Order</button>
+								<!-- <a href="[@URL@]" title="View [@model@] Buying Options" class="btn btn-primary btn-block btn-loads" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>">More Details</a> -->
+								<a href="#quickshop" onclick="$.load_ajax_template('_quick_view',{sku: '[@SKU@]'}, {onLoad: function(c){$('#quickShopModal').modal('show');setTimeout(function(){$('.slick-main-img, .slick-product-nav').slick('refresh');}, 300);}})"  title="View [@model@] Quick Shop" class="btn btn-primary btn-block btn-loads mt-2" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>">Quick Shop</a>
+							</div>
+						[%elseif [@store_quantity@] > 0 AND ![@preorder@] %]
+							<div class="input-group y">
+							  <input type="button" value="-" class="button-minus" data-field="quantity">
+							  <input type="number" id="qty[@rndm@][@SKU@]" min="[@min_qty@]" step="[@multiplier_qty@]" max="" value="0" name="quantity" class="quantity-field form-control qty input-lg">
+							  <input type="button" value="+" class="button-plus" data-field="quantity">
+							</div>
+							<div class="btn-group test">
+								[%if [@extra@] or [@has_child@] %]
+									<a href="[@URL@]" title="Buying Options" class="btn btn-primary btn-loads" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>">Buying Options</a>
+								[%elseif [@store_quantity@] > 0 AND ![@preorder@] %]
+									<button type="button" title="Add to Cart" class="addtocart btn-primary btn btn-loads" rel="[@rndm@][@sku@]" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>">Add to Cart</button>
+								[%/if%]
+								<!-- <a href="[@URL@]" title="View [@model@] Buying Options" class="btn btn-primary btn-block btn-loads" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>">More Details</a> -->
+								<a href="#quickshop" onclick="$.load_ajax_template('_quick_view',{sku: '[@SKU@]'}, {onLoad: function(c){$('#quickShopModal').modal('show');setTimeout(function(){$('.slick-main-img, .slick-product-nav').slick('refresh');}, 300);}})"  title="View [@model@] Quick Shop" class="btn btn-primary btn-block btn-loads mt-2" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>">Quick Shop</a>
+							</div>
+						[%elseif [@store_quantity@] < 1 AND [@config:ALLOW_NOSTOCK_CHECKOUT@] %]
+							<div class="input-group r">
+							  <input type="button" value="-" class="button-minus" data-field="quantity">
+							  <input type="number" min="[@min_qty@]" step="[@multiplier_qty@]" class="quantity-field form-control qty input-lg" id="qty[@rndm@][@SKU@]" name="qty" value="0" size="2"/>
+							  <input type="button" value="+" class="button-plus" data-field="quantity">
+							</div>
+							<div class="btn-group">
+								<button type="button" title="Add to Cart" class="addtocart btn-primary btn btn-loads" rel="[@rndm@][@sku@]" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>">Backorder</button>
+								<a href="#quickshop" onclick="$.load_ajax_template('_quick_view',{sku: '[@SKU@]'}, {onLoad: function(c){$('#quickShopModal').modal('show');setTimeout(function(){$('.slick-main-img, .slick-product-nav').slick('refresh');}, 300);}})"  title="View [@model@] Quick Shop" class="btn btn-primary btn-block btn-loads mt-2" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>">Quick Shop</a>
+							</div>
+						[%ELSE%]
+						[%set [@date_now@] %][%format type:'date' format:'#U'%]now[%/format%][%/set%]
+						[%set [@date_arrival@] %][%format type:'date' format:'#U'%][@arrival_date@][%/format%][%/set%]
+						[%if [@date_arrival@] > [@date_now@] %]
+					  		<p class="eta-info-product" style="margin-top:5px;">Approximate ETA [%format type:'date' format:'#D #K #Y'%] [@arrival_date@][%/format%]</p>
+						[%/if%]
+						<div class="btn-group">
+							<!-- <a class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#notifymodal"><i class="fa fa-envelope"></i> Notify Me</a> -->
+							<a href="[@URL@]" title="View [@model@] Buying Options" class="btn btn-primary btn-block btn-loads" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>">More Details</a>
+							<a href="#quickshop" onclick="$.load_ajax_template('_quick_view',{sku: '[@SKU@]'}, {onLoad: function(c){$('#quickShopModal').modal('show');setTimeout(function(){$('.slick-main-img, .slick-product-nav').slick('refresh');}, 300);}})"  title="View [@model@] Quick Shop" class="btn btn-primary btn-block btn-loads mt-2" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>">Quick Shop</a>
+						</div>
+						[%END IF%]
+                    </form>
+			[%/if%]
+		</div>
+
+		[%set [@freebie@] %]
+			[%free_gifts id:'[@sku@]'%]
+			[%PARAM *header%]
+				<div class="thumbnail-badge label-warning bonus">
+					<div>
+						<span class="badge-text text-center">Bonus</span>
+					</div>
+				</div>
+			[%/param%]
+			[%/free_gifts%]
+		[%/set%]
+
+		[%if [@store_quantity@] < 1 AND ![@config:ALLOW_NOSTOCK_CHECKOUT@] AND ![@preorder@] %]
+			<div class="thumbnail-badge label-info soldout">
+				<div>
+					<span class="badge-text">Sold Out</span>
+				</div>
+			</div>
+		[%elseif [@inpromo@]%]
+			<div class="thumbnail-badge label-danger sale">
+				<div>
+					<span class="badge-text">Sale</span>
+				</div>
+			</div>
+		[%elseif [@misc5@] ne ''%]
+			<div class="thumbnail-badge label-info [@misc5@]">
+				<div>
+					<span class="badge-text">[@misc5@]</span>
+				</div>
+			</div>
+		[%elseif [@freebie@]%]
+			[@freebie@]
+		[%/if%]
+	</div>
+
+</article>
+[%/CACHE%]

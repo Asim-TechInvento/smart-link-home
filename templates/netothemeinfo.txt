@@ -1,0 +1,15 @@
+type
+website
+----------
+name
+Twenty3
+----------
+version
+20
+----------
+install_description
+<p>Twenty3 features a clean modern design, packed with powerful features to increase your conversions. With a focus on large imagery, layout flexibility, and attention to detail, Twenty3 Premium Theme will bring a new level of polish and exclusivity to your ever growing business. Twenty3 includes groundbreaking features such as refined icon packs, an optimised mobile menu, and a revamped shopping cart page, resulting in the most seamless shopping experience on the Neto platform.</p>
+----------
+description
+<h1>Twenty3</h1>
+<p>Twenty3 features a clean modern design, packed with powerful features to increase your conversions. With a focus on large imagery, layout flexibility, and attention to detail, Twenty3 Premium Theme will bring a new level of polish and exclusivity to your ever growing business. Twenty3 includes groundbreaking features such as refined icon packs, an optimised mobile menu, and a revamped shopping cart page, resulting in the most seamless shopping experience on the Neto platform.</p>

@@ -1,0 +1,55 @@
+<div class="col-xs-12">
+	<div class="page-header fullwidth">
+		<div class="container">
+			[%breadcrumb%]
+				[%PARAM *header%]
+					<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+						<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+							<a href="[@config:home_url@]" itemprop="item"><span itemprop="name">Home</span></a>
+							<meta itemprop="position" content="0" />
+						</li>
+				[%/PARAM%]
+				[%PARAM *body%]
+					<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+						<a href="[@url@]" itemprop="item"><span itemprop="name">[@name@]</span></a>
+						<meta itemprop="position" content="[%calc [@count@] + 1 /%]" />
+					</li>
+				[%/PARAM%]
+				[%PARAM *footer%]
+					</ul>
+				[%/PARAM%]
+			[%/breadcrumb%]
+			<h1>[@content_name@]</h1>
+		</div>
+	</div>
+
+	<section class="n-responsive-content" aria-label="Description">
+		[%parse%]
+			[@content_description1@]
+			[@content_description2@]
+			[@content_description3@]
+		[%/ parse%]
+	</section>
+
+	[%CATEGORYMENU sortby:'sortorder,name' show_empty:'1' limit:''%]
+		[%PARAM header%]
+			<section class="row category-grid" aria-label="Categories">
+		[%/ PARAM%]
+		[%PARAM *level_1%]
+			<div class="col-xxs-12 col-xs-6 col-sm-6 col-md-4 category-thumbnail" role="article" aria-label="[@name@] category">
+				<div class="category-advert-img" style="background: url('[%asset_url type:'category' id:'[@id@]'%][%param default%][%cdn_asset html:'0' library:'images'%]default_product.gif[%/cdn_asset%][%end param%][%END asset_url%]'); background-size:cover; background-position:center;">
+				    <a href="[@url@]">
+						<div class="caption">
+						    <div>
+							    <h3>[@name@]</h3>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		[%/ PARAM%]
+		[%PARAM footer%]
+			</section>
+		[%/ PARAM%]
+	[%/ CATEGORYMENU%]
+</div>

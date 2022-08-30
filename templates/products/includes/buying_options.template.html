@@ -1,0 +1,172 @@
+<div class="extra-options">
+	[%multilevelpricing id:'[@SKU@]'%]
+		[%PARAM *header%]
+			<div class="buyinbulk panel panel-default">
+				<div class="panel-heading collapsed" data-toggle="collapse" data-target="#bulkbuy">Buy In Bulk &amp; Save</div>
+					<div id="bulkbuy" class="collapse">
+						<table class="table table-bordered">
+							<tbody>
+		[%END PARAM%]
+		[%PARAM *body%]
+								<tr>
+									<td width="20%" nowrap="nowrap">
+										<span class="productmultilevelqty">Buy [%FORMAT type:'number' dp:'0' sp:','%][@minqty@][%END FORMAT%]
+											[%IF [@maxqty@] == 0%]+[%END IF%]
+										</span>
+									</td>
+									<td nowrap="nowrap">
+										<span class="productmultilevelprice"> Pay [%FORMAT type:'currency' dpno_zero:'1'%][@price@][%END FORMAT%]<sup>/ea</sup></span>
+									</td>
+								</tr>
+		[%END PARAM%]
+		[%PARAM *footer%]
+						</tbody>
+					</table>
+				</div>
+			</div>
+		[%END PARAM%]
+	[%END multilevelpricing%]
+	<hr aria-hidden="true"/>
+
+	<!-- PRODUCT OPTIONS -->
+	[%extra_options id:'[@SKU@]'%]
+		[%PARAM *number_option%]
+				<div class="extraoption" aria-label="[@name@] number option">
+					<label>[@name@]</label>
+					<input name="extra[@count@]" class="form-control" id="productextra[@count@]" rel="[@SKU@]" value="">
+				</div>
+		[%END PARAM%]
+		[%PARAM *text_option%]
+				<div class="extraoption" aria-label="[@name@] text option">
+					<label>[@name@]</label>
+					<textarea name="extra[@count@]" [%if [@length@]%]maxlength="[@length@]"[%/if%]class="form-control" id="productextra[@count@]" rel="[@SKU@]" cols="20"></textarea>
+				</div>
+		[%END PARAM%]
+		[%PARAM *select_option%]
+				<div class="extraoption" aria-label="[@name@] select extra option">
+					<label>[@name@]</label>
+					<select name="extra[@count@]" class="form-control" id="productextra[@count@]" rel="[@SKU@]">
+						[@choices@]
+					</select>
+				</div>
+		[%END PARAM%]
+		[%PARAM *choices%]
+				<option type="text" class="form-control" value="[@option_id@]">[%nohtml%][@text@][%end nohtml%]
+				[%DATA id:'price' if:'!=' value:'0'%]
+					(+ [%FORMAT type:'currency'%][@price@][%END FORMAT%])
+				[%END DATA%]
+				</option>
+		[%END PARAM%]
+		[%PARAM *footer%]
+			<input type="hidden" name="extras" value="[@total_options@]"/>
+			<hr aria-hidden="true"/>
+		[%END PARAM%]
+	[%END extra_options%]
+
+	[%data id:'multiplier_qty' if:'ne' value:'0' %]
+		Order In Lots Of <strong>[@multiplier_qty@]</strong>
+	[%end data%]
+	[%data id:'min_qty' if:'ne' value:'0' %]
+		Minimum Order Quantity <strong>[@min_qty@]</strong>
+	[%end data%]
+	[%data id:'max_qty' if:'ne' value:'0' %]
+		Maximum Order Quantity <strong>[@max_qty@]</strong>
+	[%end data%]
+	<form class="buying-options" autocomplete="off" role="form" aria-label="Product purchase form">
+		<input type="hidden" id="model[@rndm@][@SKU@]" name="model" value="[@model@]">
+		<input type="hidden" id="thumb[@rndm@][@SKU@]" name="thumb" value="[@thumb@]">
+		<input type="hidden" id="sku[@rndm@][@SKU@]" name="sku" value="[@SKU@]">
+		<!-- Quantity -->
+		<div class="row">
+			<div class="col-xs-12 product-quantity">
+				<label class="inline">Quantity:</label>
+				<div class="inline quantity-field">
+					<a href="javascript:void(0)" class="qty-plus"><i class="fa fa-minus" aria-hidden="true"></i></a>
+					<input type="text" min="[@min_qty@]" class="form-control qty qty-quick input-lg" id="qty[@rndm@][@SKU@]" name="qty" value="[%data id:'min_qty' if:'ne' value:'0' %][@min_qty@][%end data%][%data id:'min_qty' if:'eq' value:'0' %]1[%end data%]" size="2"/>
+					<a href="javascript:void(0)" class="qty-minus"><i class="fa fa-plus" aria-hidden="true"></i></a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Add to Cart -->
+		<div class="row">
+			<div class="col-xs-12">
+				[%if [@available_preorder_quantity@] > 0 AND [@preorder@] AND [@config:WEBSTORE_USE_PREORDER_QUANTITY@]%]
+					<button type="button" title="Add [@model@] to Cart" class="addtocart btn btn-warning btn-block btn-lg btn-loads" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>" rel="[@rndm@][@SKU@]">Pre-Order Now</button>
+				[%elseif [@store_quantity@] > 0 AND [@preorder@] AND ![@config:WEBSTORE_USE_PREORDER_QUANTITY@]%]
+					<button type="button" title="Add [@model@] to Cart" class="addtocart btn btn-warning btn-block btn-lg btn-loads" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>" rel="[@rndm@][@SKU@]">Pre-Order Now</button>
+				[%elseif [@store_quantity@] > 0 AND ![@preorder@] %]
+					<button type="button" title="Add [@model@] to Cart" class="addtocart btn btn-success btn-block btn-lg btn-loads" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>" rel="[@rndm@][@SKU@]">Add to Cart</button>
+				[%elseif [@store_quantity@] < 1 AND [@config:ALLOW_NOSTOCK_CHECKOUT@] %]
+					<button type="button" title="Add [@model@] to Cart" class="addtocart btn btn-warning btn-block btn-lg btn-loads" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>" rel="[@rndm@][@SKU@]">Backorder</button>
+					<a class="btn btn-info btn-lg btn-block d-none" title="Notify Me When [@model@] Is Back In Stock" data-toggle="modal" data-target="#notifymodal">Notify Me</a>
+				[%else%]
+					<a class="btn btn-info btn-lg btn-block" title="Notify Me When [@model@] Is Back In Stock" data-toggle="modal" data-target="#notifymodal">Notify Me</a>
+				[%/if%]
+			</div>
+		</div>
+		<!-- Wishlist & Availability -->
+		<div class="row product-wishlist-sku">
+			<div class="col-xs-6 wishlist">
+				[%if [@config:show_wishlist@]%]
+					<div class="product-wishlist">
+						[%IN_WISHLIST id:'[@SKU@]' %]
+							[%PARAM if_true%]
+								<a class="wishlist_toggle" rel="[@SKU@]"><span class="remove" rel="wishlist_text[@SKU@]"><i class="fa fa-heart"></i> Added to Wishlist</span></a>
+							[%/PARAM%]
+							[%PARAM if_false%]
+								<a class="wishlist_toggle" rel="[@SKU@]"><span class="add" rel="wishlist_text[@SKU@]"><i class="fa fa-heart-o"></i> Add to Wishlist</span></a>
+							[%/PARAM%]
+						[%/IN_WISHLIST%]
+					</div>
+				[%/if%]
+			</div>
+			<div class="col-xs-6 product-availability">
+				<!-- Availability -->
+				[%if [@available_preorder_quantity@] > 0 AND [@preorder@] AND [@config:WEBSTORE_USE_PREORDER_QUANTITY@]%]
+					<span data-toggle="tooltip" data-placement="top" title="[@availability_description@]"><i class="fa fa-check"></i> Pre-order [%if [@arrival_date@]%] - Arrival [%format type:'date'%][@arrival_date@][%/format%][%/if%]</span>
+				[%elseif [@store_quantity@] > 0 AND [@preorder@] AND ![@config:WEBSTORE_USE_PREORDER_QUANTITY@]%]
+					<span data-toggle="tooltip" data-placement="top" title="[@availability_description@]"><i class="fa fa-check"></i> Pre-order [%if [@arrival_date@]%] - Arrival [%format type:'date'%][@arrival_date@][%/format%][%/if%]</span>
+				[%elseif [@store_quantity@] > 0 AND ![@preorder@] %]
+					<span data-toggle="tooltip" data-placement="top" title="[@availability_description@]"><i class="fa fa-check"></i> In Stock</span>
+				[%elseif [@store_quantity@] < 1 AND [@config:ALLOW_NOSTOCK_CHECKOUT@] %]
+					<span data-toggle="tooltip" data-placement="top" title="[@availability_description@]"><i class="fa fa-times"></i> Backorder Available</span>
+				[%else%]
+					<span data-toggle="tooltip" data-placement="top" title="[@availability_description@]"><i class="fa fa-times"></i> Sold Out</span>
+				[%/if%]
+			</div>
+		</div>
+	</form>
+</div>
+<div class="modal fade notifymodal" id="notifymodal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Notify me when back in stock</h4>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label>Name</label>
+					<input placeholder="Jane Smith" name="from_name" id="from_name" type="text" class="form-control" value="[%NOHTML%][@FROM_NAME@][%END NOHTML%]">
+				</div>
+				<div class="form-group">
+					<label>Email Address</label>
+					<input placeholder="jane.smith@test.com.au" name="from" id="from" type="email" class="form-control" value="[%NOHTML%][@FROM@][%END NOHTML%]">
+				</div>
+				<div class="checkbox">
+			    <label>
+			        <input type="checkbox" value="y" class="terms_box" required/>
+			        I have read and agree to
+			        <a href="#" data-toggle="modal" data-target="#termsModal">Terms & Conditions</a> and
+			        <a href="#" data-toggle="modal" data-target="#privacyModal">Privacy Policy</a>.
+			    </label>
+			    <span class="help-block hidden">Please tick this box to proceed.</span>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<input class="btn btn-danger" type="button" data-dismiss="modal" value="Cancel">
+				<input class="btn btn-success js-notifymodal-in-stock" data-sku="[@sku@]" type="button" value="Save My Details">
+			</div>
+		</div>
+	</div>
+</div>

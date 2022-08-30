@@ -1,0 +1,66 @@
+<meta property="og:image" content="[@full_image@]"/>
+<div class="row">
+	<div class="col-sm-12 col-md-10 col-md-push-2">
+		<div class="text-center slick-main-quick-view-img">
+			<a href="[%asset_url type:'product' id:'[@SKU@]' thumb:'full' check_parent:'y'/%]" class="fancybox fancybox-img zoom" rel="product_images">
+				<img src="[%asset_url type:'product' id:'[@SKU@]' thumb:'full' check_parent:'y'/%]" border="0" class="img-responsive product-image-small" title="Large View">
+			</a>
+			[%thumbnails id:'[@SKU@]' check_parent:'y'%]
+				[%param *body%]
+				<a href="[@full_image@]" class="fancybox fancybox-img zoom" rel="product_images">
+					<img src="[@full_image@]" border="0" class="img-responsive product-image-small" title="Large View">
+				</a>
+				[%/param%]
+			[%/thumbnails%]
+		</div>
+
+		[%set [@freebie@] %]
+			[%free_gifts id:'[@sku@]'%]
+			[%PARAM *header%]
+				<div class="thumbnail-badge label-warning bonus">
+					<div>
+						<span class="badge-text text-center">Bonus</span>
+					</div>
+				</div>
+			[%/param%]
+			[%/free_gifts%]
+		[%/set%]
+
+		[%if [@store_quantity@] < 1 AND ![@config:ALLOW_NOSTOCK_CHECKOUT@] AND ![@preorder@]%]
+			<div class="thumbnail-badge label-info soldout">
+				<div>
+					<span class="badge-text">Sold Out</span>
+				</div>
+			</div>
+		[%elseif [@inpromo@]%]
+			<div class="thumbnail-badge label-danger sale">
+				<div>
+					<span class="badge-text">Sale</span>
+				</div>
+			</div>
+		[%elseif [@misc5@] ne ''%]
+			<div class="thumbnail-badge label-info [@misc5@]">
+				<div>
+					<span class="badge-text">[@misc5@]</span>
+				</div>
+			</div>
+		[%elseif [@freebie@]%]
+			[@freebie@]
+		[%/if%]
+	</div>
+
+	<div class="hidden-xs hidden-sm col-md-2 col-md-pull-10 image-navigation">
+		<div class="slick-product-quick-view-nav">
+			<div class="cts_altImgWrapper">
+				<img src="[%asset_url type:'product' id:'[@SKU@]' thumb:'thumb' check_parent:'y'/%]" border="0" class="img-responsive product-image-small">
+			</div>
+			[%thumbnails id:'[@SKU@]' check_parent:'y'%]
+			[%param *body%]
+			<div class="cts_altImgWrapper">
+				<img src="[@thumb_image@]" border="0" class="img-responsive product-image-small" title="Large View">
+			</div>
+			[%/param%]
+			[%/thumbnails%]
+		</div>
+	</div>
+</div>

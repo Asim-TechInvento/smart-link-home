@@ -1,0 +1,64 @@
+[%cache type:'list' id:'[@inventory_id@]-multi'%]
+    <article class="col-12 col-xl-6" role="article" aria-label="Product Thumbnail">
+        <div class="card" itemscope itemtype="http://schema.org/Product">
+            <meta itemprop="brand" content="[@brand@]"/>
+            <meta itemprop="mpn" content="[@sku@]"/>
+            <div class="card-body p-3">
+                <div class="row">
+                    <div class="col-3 col-sm-2 col-xl-3">
+                        <a href="[@URL@]" class="thumbnail-image">
+                            <img src="[%asset_url type:'product' thumb:'thumb' id:'[@sku@]'%][%param default%][%cdn_asset html:'0' library:'images'%]default_product.gif[%/cdn_asset%][%/param%][%/asset_url%]" itemprop="image" class="product-image img-fluid" alt="[@model@]" rel="itmimg[@sku@]">
+                        </a>
+                    </div>
+                    <div class="col-9 col-sm-10 col-xl-9 pl-0">
+                        <div class="row">
+                            <div class="col-12 col-sm-8">
+                                <h4 itemprop="name"><a href="[@URL@]" title="[@model@]">[%format type:'text' maxlength:'100' rmhtml:'1'%][@model@][%/format%]</a></h4>
+                                <div class="price lead" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                                    <meta itemprop="priceCurrency" content="[@config:defaultcurrency@]">
+                                    [%if [@inpromo@]%]
+                                        <strong>Now [%if [@has_child@]%]from [%/if%]</strong>
+                                        <meta itemprop="priceValidUntil" content="[%format type:'date' format:'#Y-#M-#d'%][@promo_end@][%END format%]"/>
+                                        <span class="text-success" itemprop="price" content="[@promo_price@]">[%format type:'currency'%][@promo_price@][%/format%]</span>
+                                    [%else%]
+                                        [%if [@has_child@]%]From [%/if%]
+                                        <span itemprop="price" content="[@store_price@]">[%format type:'currency'%][@store_price@][%/format%]</span>
+                                    [%/if%]
+                                    [%if [@inpromo@]%]
+                                        <p class="mb-1"><span class="badge badge-danger">On Sale</span></p>
+                                    [%/if%]
+                                    [%if [@save@] > 0 AND ![@has_child@] %]
+                                        <p class="mb-1"><span class="badge badge-warning">[%format type:'percent'%][@save@][%/format%] OFF</span></p>
+                                    [%/if%]
+                                    [%if [@save@] > 0%]
+                                        <p class="mb-1"><span class="badge badge-secondary">RRP [%format type:'currency'%][@retail@][%/format%]</span></p>
+                                    [%/if%]
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-4 col-sm-3 col-xl-4">
+                                <form class="buying-options">
+                                    <input type="hidden" id="sku[@rndm@][@sku@]" name="sku[@rndm@][@sku@]" value="[@sku@]">
+                                    <input type="hidden" id="model[@rndm@][@sku@]" name="model[@rndm@][@sku@]" value="[@model@]">
+                                    <input type="hidden" id="thumb[@rndm@][@sku@]" name="thumb[@rndm@][@sku@]" value="[@thumb@]">
+                                    [%if [@extra@] or [@has_child@] %]
+                                        <a href="[@URL@]" title="Buying Options" class="btn btn-primary btn-block btn-sm btn-loads" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>">See Options</a>
+                                    [%elseif [@store_quantity@] > 0 AND [@preorder@] %]
+                                        <input type="number" id="qty[@rndm@][@SKU@]" name="qty[@rndm@][@SKU@]" Placeholder="Qty" class="form-control">
+                                        <span class="mt-2 badge badge-warning">Pre-order</span>
+                                    [%elseif [@store_quantity@] > 0 AND ![@preorder@] %]
+                                        <input type="number" id="qty[@rndm@][@SKU@]" name="qty[@rndm@][@SKU@]" Placeholder="Qty" class="form-control">
+                                    [%elseif [@store_quantity@] < 1 AND [@config:ALLOW_NOSTOCK_CHECKOUT@] %]
+                                        <input type="number" id="qty[@rndm@][@SKU@]" name="qty[@rndm@][@SKU@]" Placeholder="Qty" class="form-control">
+                                        <span class="mt-2 badge badge-danger">Backorder</span>
+                                    [%else%]
+                                        <a class="notify_popup btn btn-outline-secondary btn-block btn-sm btn-loads" href="[@url@]" title="Notify Me When Back In Stock" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>">Out Of Stock</a>
+                                    [%/if%]
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+[%/cache%]

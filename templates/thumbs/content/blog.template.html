@@ -1,0 +1,16 @@
+<div class="blog-thumbnail col-xxs-12 col-xs-6 col-sm-4 fadeinslow">
+  <a href="[@url@]">
+    <div class="blog-img" style="background:url('[%asset_url type:'content' id:'[@content_id@]' default:'[$imageurl$]/na.gif'%][%end asset_url%]') no-repeat center; background-size:cover;">
+      [%if [@date_posted@] != 0000-00-00 00:00:00%]
+        <div class="blog-date">[%format type:'date' format:'#k #d'%][@date_posted@][%/format%]</div>
+      [%/if%]
+    </div>
+    <div class="blog-thumbnail-inner">
+    	<div class="card-block">
+        <h4>[@content_name@]</h4>
+        [%if [@content_description1@]%]<p>[%format type:'text' rmhtml:'1' truemaxlength:'180'%][@content_description1@][%/format%]...</p>[%/if%]
+        <p><a href="[@URL@]" class="underline">Read More</a></p>
+    	</div>
+    </div>
+  </a>
+</div>

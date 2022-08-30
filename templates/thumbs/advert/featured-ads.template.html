@@ -1,0 +1,16 @@
+<a href="[@url@]" class="grid-item [@count@]">
+  <div class="grid-item-img" style="background: url('[%asset_url type:'adw' id:'[@ad_id@]'%][%param default%][%cdn_asset html:'0' library:'images'%]default_product.gif[%/cdn_asset%][%end param%][%END asset_url%]'); background-size:cover; background-position:center;">
+    [%if [@headline@]%]
+    <div class="wrapper-caption">
+      <div class="caption">
+        <h2 class="headline">[@headline@]</h2>
+        [%if [@linktext@]%]
+          <span class="linktext">[%format type:'text' nohtml:'1' trim:'LE2R' wordlength:'5'%][@linktext@][%END format%] ></span>
+        [%else%]
+          <span class="linktext">View ></span>
+        [%/if%]
+      </div>
+    </div>
+    [%/if%]
+  </div>
+</a>

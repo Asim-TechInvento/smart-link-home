@@ -1,0 +1,91 @@
+[%SITE_VALUE id:'footer_javascript'%]
+<script src="//maps.google.com/maps/api/js?sensor=false&key=[@config:GOOGLE_GEO_API@]" type="text/javascript"></script>
+
+<script type="text/javascript" language="javascript">
+	$(document).ready(function() {
+		$.storeLocator_Init({
+			'page': {
+				'result': '<div class="resultmsg">##count## result(s) found</div>',
+				'header': '<div class="##list_class##">##msg##<br clear="all"><ul>',
+				'body': '<li class="##item_class##" ref="##count##">##IF:thumb##<div class="thumb"><img width="80px" src="##thumb##" border="0"></div>##END IF:thumb##' + '<a class="h5" href="javascript:##script##">##name##</a><br>' + '<span class="address">##street##, ##city##, ##state## ##zip##</span><br>' + '<span class="distance">(##distance##km from your location)</span><br>' + '##IF:phone##<span class="contact"><b>PH:</b> ##phone##</span>##END IF:phone##' + '##IF:fax##<span class="contact"><b>Fax:</b> ##fax##</span>##END IF:fax##' + '##IF:email##<span class="contact"><b>Email:</b> ##email##</span>##END IF:email##' + '<br><a title="View store details" class="underline" href="##url##">View store details</a>' + '</li>',
+				'footer': '</ul></div>',
+				'info': '<div class="##info_class##">' + '<a href="#" class="h5">##name##</a><br>' + '<span class="address">##street##, ##city##, ##state## ##zip##</span><br>' + '<span class="distance">(##distance##km from your location)</span><br>' + '##IF:phone##<span class="contact"><b>PH:</b> ##phone##</span>##END IF:phone##' + '##IF:fax##<span class="contact"><b>Fax:</b> ##fax##</span>##END IF:fax##' + '##IF:email##<span class="contact"><b>Email:</b> ##email##</span>##END IF:email##</div>'
+			}
+		});
+
+		$('#geo_search').click(function() {
+			if ($('#geo_zip').val() != '') $('.geo_country_unique_class').attr('id','geo_country');
+			else $('.geo_country_unique_class').attr("id","geo_country_");
+		});
+
+		$('#geo_zip').keypress(function(e) {
+		    if(e.which == 13) {
+				e.preventDefault();
+		        $('#geo_search').trigger('click');
+		    }
+		});
+	});
+</script>
+[%END SITE_VALUE%]
+</div>
+
+<div class="Stockists">
+	<div id="geo_map"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="text-center page-header">
+							<h1>[@content_name@]</h1>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xxs-12 col-xs-6 col-sm-12">
+						<form class="stockists-form row">
+							<div class="form-group col-sm-4">
+								<label for="geo_zip">Your Postcode or City</label>
+								<input type="text" id="geo_zip" class="form-control input-lg" placeholder="Enter Postcode Here"/>
+							</div>
+							<div class="form-group col-xxs-12 col-xs-6 col-sm-4">
+								<label>Show Stores Within</label>
+								<select id="geo_radius" class="form-control input-lg">
+									<option value="5">5 Kilometers</option>
+									<option value="15">15 Kilometers</option>
+									<option value="25" selected>25 Kilometers</option>
+									<option value="50">50 Kilometers</option>
+									<option value="75">75 Kilometers</option>
+									<option value="100">100 Kilometers</option>
+									<option value="200">200 Kilometers</option>
+								</select>
+							</div>
+							<div class="form-group hidden">
+								<label for="geo_country">Your Country</label>
+								<select id="geo_country_" class="form-control input-lg geo_country_unique_class">
+									[%countries%]
+									[%PARAM *body%]
+									<option value="[@country_code@]" [%SESSION id:'ship_country' if:'eq' value:'[@ship_country@]'%]selected[%END SESSION%]>[@country_name@]</option>
+									[%END PARAM%]
+									[%END countries%]
+								</select>
+							</div>
+							<div class="form-group col-xs-12 col-sm-4">
+								<br>
+								<button id="geo_search" class="btn btn-primary btn-block btn-lg" type="button">Find Stores</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="stockists-results container">
+		<div class="row">
+			<div class="col-sm-12">
+				<div id="geo_list"></div>
+			</div>
+		</div>
+	</div>
+</div>

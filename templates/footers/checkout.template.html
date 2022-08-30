@@ -1,0 +1,42 @@
+	</div>
+</div>
+<div class="wrapper-footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<hr />
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-9 hidden-xs">
+				[%checkout_pay_icons show_icon:'1' ignore_balance:'1'%]
+					[%param header%]
+						<ul class="list-inline" role="contentinfo" aria-label="Accepted payment methods">
+					[%/param%]
+					[%param *body%]
+							<li>
+								<div class="payment-icon-container">
+									<div class="payment-icon" style="background-image: url([@processor_icon_url@]); height: 30px;"><span class="sr-only">[@name@]</span></div>
+								</div>
+							</li>
+					[%/param%]
+					[%param *footer%]
+						</ul>
+					[%/param%]
+				[%/checkout_pay_icons%]
+			</div>
+			<div class="col-sm-3">
+				<address>
+					<strong>Copyright &copy; [%format type:'date' format:'#Y'%]today[%/format%] [@config:company_name@]</strong><br>
+					[%if [@config:company_abn@]%]<strong>[%if [@config:PRIMARY_ABN_LABEL@]%][@config:PRIMARY_ABN_LABEL@][%else%]ABN[%/if%]:</strong> [@config:company_abn@]<br>[%/ if%]
+					[%if [@config:company_poaddr@]%]<strong>Address:</strong> [@config:company_poaddr@][%/ if%]
+					[%if [@config:show_platform_branding@]%]<p class="small"><a href="https://www.netohq.com" title="Neto E-commerce Retail Management Platform" target="_blank" rel="noopener">E-commerce software by Neto</a></p>[%/if%]
+				</address>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Required Neto Scripts - DO NOT REMOVE -->
+[%load_template file:'footers/includes/scripts.template.html'/%]
+</body>
+</html>

@@ -1,0 +1,66 @@
+[%if [@reviews@] > 0%]
+  <p><a href="[%URL page:'account' type:'write_review' qs:'item=[@SKU@]'%][%/URL%]" class="btn btn-default btn-sm">Write a review</a></p>
+[%else%]
+  <p>Help other users shop smarter by writing reviews for products you have purchased.</p>
+  <p><a href="[%URL page:'account' type:'write_review' qs:'item=[@SKU@]'%][%/URL%]" class="btn btn-default btn-sm">Write a review</a></p>
+[%/if%]
+
+[%thumb_list type:'product_reviews' limit:'4'%]
+[%param pgnum%][%if [@ajax_product_reviews@]%][@ajax_product_reviews@][%else%]1[%/if%][%/param%]
+    [%param filter_1%][@SKU@][%/param%]
+    [%param *body%]
+    <div class="col-xxs-12" itemprop="review" itemscope itemtype="http://schema.org/Review">
+      <hr>
+      <meta itemprop="itemReviewed" content="[@name@]">
+      <meta itemprop="image" content="[%asset_url type:'product' thumb:'thumb' id:'[@SKU@]'%][%param default%][%cdn_asset html:'0' library:'images'%]default_product.gif[%/cdn_asset%][%end param%][%/asset_url%]">
+      <meta itemprop="datePublished" content="[%FORMAT type:'date'%][@insert_date@][%/FORMAT%]">
+        [%if [@reviewname@]%]
+        <div class="review-author">
+          <strong><span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">[@reviewname@]</span></span></strong>
+        </div>
+        [%/if%]
+        <p itemprop="description">[%nohtml%][@review@][%/nohtml%]</p>
+        <div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+          <meta itemprop="worstRating" content = "1">
+          <meta itemprop="ratingValue" content = "[@score@]">
+          <meta itemprop="bestRating" content = "5">
+        </div>
+        <p>
+        [%set [@data:ratings-count@] = 1 /%]
+        [%while [@data:ratings-count@] <= [@data:score@]%]
+          [%set [@data:ratings-count@] = [@data:ratings-count@]+1 /%]
+          <i class="fa fa-star"></i>
+        [%/while%]
+        [%while [@data:ratings-count@] <= 5%]
+          [%set [@data:ratings-count@] = [@data:ratings-count@]+1 /%]
+          <i class="fa fa-star-o"></i>
+        [%/while%]
+        </p>
+    </div>
+    [%/param%]
+    [%param *footer%]
+	<div class="col-xs-12">
+		<div class="text-center">
+			<ul class="pagination">
+				[%paging limit:'3'%]
+					[%PARAM *previous_page%]
+						<li ><a href="#reviewtab" onclick="$.load_ajax_template('_reviews',{ajax_product_reviews: '[@PAGE@]',sku: '[@SKU@]'})"><i class="fa fa-angle-left"></i></a></li>
+					[%/PARAM%]
+					[%PARAM *goback_pages%]
+						<li ><a href="#reviewtab" onclick="$.load_ajax_template('_reviews',{ajax_product_reviews: '[@PAGE@]',sku: '[@SKU@]'})">[@PAGE@]</a></li>
+					[%/PARAM%]
+					[%PARAM *current_page%]
+						<li class="active"><a href="#reviewtab" onclick="$.load_ajax_template('_reviews',{ajax_product_reviews: '[@PAGE@]',sku: '[@SKU@]'})">[@PAGE@]</a></li>
+					[%/PARAM%]
+					[%PARAM *gonext_pages%]
+						<li><a href="#reviewtab" onclick="$.load_ajax_template('_reviews',{ajax_product_reviews: '[@PAGE@]',sku: '[@SKU@]'})">[@PAGE@]</a></li>
+					[%/PARAM%]
+					[%PARAM *next_page%]
+						<li ><a href="#reviewtab" onclick="$.load_ajax_template('_reviews',{ajax_product_reviews: '[@PAGE@]',sku: '[@SKU@]'})"><i class="fa fa-angle-right"></i></a></li>
+					[%/PARAM%]
+				[%/paging%]
+			</ul>
+		</div>
+	</div>
+[%/param%]
+[%/thumb_list%]

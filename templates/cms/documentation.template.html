@@ -1,0 +1,86 @@
+</div>
+
+<div class="page-header fullwidth">
+	<div class="container">
+		[%breadcrumb%]
+			[%PARAM *header%]
+				<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+					<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+						<a href="[@config:home_url@]" itemprop="item"><span itemprop="name">Home</span></a>
+						<meta itemprop="position" content="0" />
+					</li>
+			[%/PARAM%]
+			[%PARAM *body%]
+				<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+					<a href="[@url@]" itemprop="item"><span itemprop="name">[@name@]</span></a>
+					<meta itemprop="position" content="[%calc [@count@] + 1 /%]" />
+				</li>
+			[%/PARAM%]
+			[%PARAM *footer%]
+				</ul>
+			[%/PARAM%]
+		[%/breadcrumb%]
+		<h1>[@content_name@]</h1>
+		<p class="text-white">
+			[%IF [@content_author@]%]
+				[@content_author@] &nbsp;
+			[%/IF%]
+			[%if [@date_posted@] != 0000-00-00 00:00:00%]
+				[%FORMAT type:'date'%][@date_posted@][%/FORMAT%]&nbsp;
+			[%/IF%]
+		</p>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		[%if ![@form:pgnum@] OR [@form:pgnum@] eq '1'%]
+			<section class="n-responsive-content col-xs-12" aria-label="Short description">
+				[@content_short_description1@]
+				[@content_short_description2@]
+				[@content_short_description3@]
+			</section>
+			<section class="n-responsive-content col-xs-12" aria-label="Description">
+				[%parse%]
+					[@content_description1@]
+					[@content_description2@]
+					[@content_description3@]
+					[@content_wufoo_form@]
+				[%/parse%]
+			</section>
+		[%/if%]
+
+		[%content_menu content_type:'documentation' sortby:'sortorder' start_category:'[@content_id@]' get_fields:'content_description1'%]
+		    [%param header%]
+				<div class="col-xs-12">
+		    	<div class="panel-group panel-faq" role="tablist" aria-multiselectable="true">
+		    [%/param%]
+				[%param *level_1%]
+		      [%if [@next_level@]%]
+						<h4>[@name@]</h4>
+						[@next_level@]
+					[%/if%]
+				[%/param%]
+		    [%param *level_2%]
+		        <div class="panel panel-default">
+		            <div class="panel-heading" role="tab" id="heading-[@id@]">
+		                <p class="panel-title">
+		                    <a data-toggle="collapse" href="#collapse-[@id@]" aria-expanded="true" aria-controls="collapse-[@id@]" class="collapsed">
+		                       [@name@]
+		                    </a>
+		                </p>
+		            </div>
+		            <div id="collapse-[@id@]" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-[@id@]">
+		                <div class="panel-body">
+		                    [@content_description1@]
+		                </div>
+		            </div>
+		        </div>
+		    [%/param%]
+		    [%param footer%]
+			    </div>
+				</div>
+		    [%/param%]
+		[%/content_menu%]
+	</div>
+</div>

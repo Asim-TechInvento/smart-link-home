@@ -1,0 +1,275 @@
+</div>
+
+<div class="page-header fullwidth">
+	<div class="container">
+		<div class="row">
+			<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+				<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+					<a onclick="window.location='[%last_visited default:'[@config:homeurl@]'/%]';" itemprop="item"><span itemprop="name"><i class="fa fa-angle-left" aria-hidden="true"></i> Continue Shopping</span></a>
+					<meta itemprop="position" content="0" />
+				</li>
+				<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+					<span itemprop="name">Shopping Cart</span>
+					<meta itemprop="position" content="[%calc [@count@] + 1 /%]" />
+				</li>
+			</ul>
+			<h1>Shopping Cart</h1>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="wrapper-cart col-xs-12">
+			[%load_template file:'cart/cart.error.html'/%]
+			[%cart_items%]
+			[%param header%]
+					<form method="post" name="checkout" action="[%url page:'checkout'/%]">
+						<input type="hidden" name="recal" value="1" />
+						<table class="table cartTable">
+							<thead>
+								<tr>
+									<th colspan="2" class="cartTable--heading cartTable--heading-item">Product</th>
+									<th class="cartTable--heading cartTable--heading-quantity text-center">Quantity</th>
+									<th class="cartTable--heading cartTable--heading-price text-right">Price</th>
+									<th class="cartTable--heading cartTable--heading-remove hidden-xs">&nbsp;</th>
+								</tr>
+							</thead>
+							<tbody>
+							[%/param%]
+							[%param *body%]
+							<tr>
+								<td class="cartTable--column cartTable--column-image" style="position: relative;z-index: 99;">
+									
+									<a href="[@url@]" class="zoom-box">
+										<img class="img-responsive" src="[%asset_url type:'product' id:'[@SKU@]' thumb:'full'%][%param default%][%cdn_asset html:'0' library:'images'%]default_product.gif[%/cdn_asset%][%/param%][%/ asset_url%]"/>
+									</a>
+									</td>
+								<td class="cartTable--column cartTable--column-details">
+									<p><a href="[@url@]" class="product-name"><strong>[@model@]</strong></a></p>
+								
+									<div class="d-flex">
+										<p class="pr-5"><b>SKU:</b> [@SKU@]</p>
+										<p><b>Available Stock:</b> [@store_quantity@]</p>
+									</div>
+									<span class="small">
+										[@extra@]
+										[%if [@config:checkout_upsell_extra@]%]
+											<a class="btn btn-default btn-xs" type="button" href="[%url page:'checkout' fn:'upsell'/%]" title="Edit extra options"> <i class="fa fa-pencil icon-white"></i></a>
+										[%/if%]
+									</span>
+									[%if [@aff_id@] eq '[@config:AFF_EBAY_ID@]'%]
+										<p>eBay ID: [@aff_ref@]</p>
+									[%/if%]
+									[%if [@aff_id@] eq '[@config:AFF_FREE_ID@]'%]
+										<p><span class="label label-success">Free Gift</span></p>
+									[%/if%]
+									[%if [@preorder@]%]
+										<p><span class="label label-warning">On pre-order - Released [%format type:'date'%][@arrival_date@][%/format%]</span></p>
+									[%/if%]
+									[%if [@has_components@]%]
+										[%cart_item_components counter:'[@counter@]'%]
+											[%param header%]
+												<ul class="list-unstyled">
+											[%/param%]
+											[%param *body%]
+												[%if [@fixed_assemble@]%]
+														<li>
+															<input type="hidden" name="compsku[@count@]_[@component_count@]" value="[@SKU@]">
+															<label>[@qty@] x [@model@]</label>
+														</li>
+												[%else%]
+														<li>
+															<input type="hidden" name="compsku[@count@]_[@component_count@]" value="[@SKU@]">
+															<label>[@model@] x </label>
+															<input type="text" min="[@min_assemble@]" max="[@max_assemble@]" name="compqty[@count@]_[@component_count@]" class="form-control" value="[@qty@]" size="3">
+														</li>
+												[%/if%]
+											[%/param%]
+											[%param *footer%]
+												</ul>
+												<input type="hidden" name="components[@count@]" value="[@total_components@]">
+											[%/param%]
+										[%/cart_item_components%]
+									[%/if%]
+									[%if [@gifts_available@]%]
+										[%free_gifts id:'[@SKU@]'%]
+											[%param *header%]
+											<div class="well freebies">
+												<div class="row">
+													<div class="col-xs-12">
+														[%if [@total_gifts@] > 1%]
+															<h5>Congratulations, you are eligible for [@gifts_available@] free gifts</h5>
+															<span class="help-box hidden">Add the following gift to your cart now and you'll get it free</span>
+														[%else%]
+															<h5>Congratulations, you are eligible for a free gift</h5>
+															<span class="help-box hidden">Add the following gift to your cart now and you'll get it free.</span>
+														[%/if%]
+													</div>
+											[%/param%]
+											[%PARAM *body%]
+												<div class="col-xs-12">
+													<div class="row">
+														<div class="thumbnail">
+															<div class="hidden-xs hidden-sm col-md-3">
+																<a href="[%url type:'item ' id:'[@SKU@]'/%]" class="thumbnail-image"><img width="120" height="120" src="[@thumb@]" alt="[@model@]" /> </a>
+															</div>
+															<div class="col-sm-12 col-md-9">
+																<p><a href="[%url type:'item' id:'[@SKU@]'/%]">[%format type:'text' maxlength:'70' rmhtml:'1'%][@model@][%/format%]</a></p>
+																<p><a class="btn btn-default btn-sm btn-block"href="[%url page:'checkout' qs:'sku=[@SKU@]&gift=[@counter@]'/%]">Add to Cart</a> </p>
+															</div>
+														</div>
+													</div>
+												</div>
+											[%/param%]
+											[%PARAM *footer%]
+												</div>
+											</div>
+											[%/param%]
+										[%/free_gifts%]
+									[%/if%]
+								</td>
+								<td class="options-column">
+									<input name="line[@count@]" type="hidden" value="[@counter@]" />
+									<input id="qty[@count@]"  type="text" min="0" name="qty[@count@]" value="[@qty@]" class="form-control cart-qty" [%if [@aff_id@] eq 'free'%] disabled [%/if%]/>
+								</td>
+								<td class="text-right">
+									[%if [@qty@] > 1%]
+										<p class="small">[@qty@] x [%format type:'currency'%][@price@][%/format%]</p>
+									[%/if%]
+									[%if [@discount_percent@] > 0%]
+										<p><i>-[%format type:'percent' dp:'2'%][@discount_percent@][%/format%]</i></p>
+									[%/if%]
+									<p class="h5">[%format type:'currency'%][@subtotal@][%/format%]</p>
+								</td>
+								<td class="hidden-xs cartTable-remove text-center">
+									<a class="btn btn-danger" href="javascript:rmcart('qty[@count@]');"><i class="fa fa-times" aria-hidden="true"></i></a>
+								</td>
+							</tr>
+							[%/param%]
+							[%param *footer%]
+							<tr>
+								<td colspan="6">
+									<div class="col-xs-12 col-sm-8">
+										<form method="post" action="[%url page:'checkout'/%]">
+											<div class="form-group coupon-column">
+												<input class="form-control" type="text" name="addcpn" value="" placeholder="Coupon Code"/>
+											</div>
+											<input type="submit" class="btn btn-default btn-sm" value="Apply Coupon">
+										</form>
+									</div>
+									<div class="col-xs-12 col-sm-4 text-right update-btn">
+										<button type="button" class="btn btn-inverse btn-sm" onclick="javascript:document.checkout.submit();" title="Update Changes"><i class="fa fa-refresh"></i> Update Cart</button>
+									</div>
+								</td>
+							</tr>
+							</tbody>
+						</table>
+					</form>
+
+			<!-- Cart Total -->
+			<div class="row">
+				<div class="col-xs-12 col-md-6 pull-right">
+					<h3>Cart Total</h3>
+					<table class="table cartTable cartTotals">
+						<tr>
+							<th><b>Subtotal</b></th>
+							<td>[%format type:'currency'%][@product_total@][%/format%]</td>
+						</tr>
+						[%active_coupons%]
+							[%param *header%]
+							<tr>
+							[%/param%]
+							[%param *body%]
+								<th><b>Coupon: [@title@]</b></th>
+								<td>-[%format type:'currency'%][@discount_total@][%/format%] <a href="[%url page:'checkout' qs:'rmcpn=[@code@]'/%]"><i class="fa fa-times"></i></a></td>
+							[%/param%]
+							[%param *footer%]
+							</tr>
+							[%/param%]
+						[%/active_coupons%]
+						
+						[%if [@config:show_shipping_calc@]%]
+							<tr>
+								<th><b>Shipping</b></th>
+								<td>
+									[%load_template file:'cart/includes/shipping_calc.template.html'/%]
+								</td>
+							</tr>
+						[%/if%]
+						<tr>
+							<th><b>Total</b></th>
+							<td><b class="total">[%format type:'currency'%][@grand_total@][%/format%]</b>
+								<small>[%if ![@notax@]%](includes [%format type:'currency'%][@tax_total@][%/format%] GST)[%/if%]</small></td>
+						</tr>
+					</table>
+
+			<form method="post"  name="paypal" action="[%url page:'checkout' fn:'3rdparty'/%]">
+				<input type="hidden" name="payment" value="6"/>
+				[%payment_plans type:'[@order_type@]' sortby:'sortorder,name'%]
+					[%param *header%]
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">Select your payment plan</h4>
+									</div>
+									<div class="panel-body">
+										<select class="form-control" name="plan">
+											<option value="">Select your payment plan</option>
+				[%/param%]
+				[%param *body%]
+											<option value="[@id@]" [%if [%id%] eq [@payment_plan_id@]%]selected[%/if%]>[@name@]</option>
+				[%/param%]
+				[%param *footer%]
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+				[%/param%]
+			[%/ payment_plans%]
+			<div class="row checkout-btn">
+				<div class="col-xs-12 col-sm-12 col-md-12 text-center">
+					<button class="btn btn-success btn-lg btn-block" type="button" onclick="window.location='[%url page:'checkout' fn:'payment'/%]';" title="Checkout Now">Proceed to Checkout</button>
+					[%if [@config:allow_user_quote@] eq '1'%]
+						<button class="btn btn-default btn-lg btn-block" type="button" role="link" onclick="window.location='[%url page:'checkout' fn:'quote'/%]';" title="Create Quote From Cart"> <i class="fa fa-list-alt" aria-hidden="true"></i> Create Quote From Cart</button>
+					[%/if%]
+				</div>
+				<div class="col-xs-12 col-md-12 text-center">
+					[%if [@config:show_paypal_express_link@]%]
+						<a id="paypal" class="_cpy_thirdparty_btn" ref="paypal" href="[%URL page:'checkout' fn:'3rdparty' qs:'payment=6'/%]">
+							<img src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/gold-rect-paypalcheckout-60px.png" alt="Checkout With Paypal" height="46">
+						</a>
+					[%/if%]
+				</div>
+			</div>
+		</form>
+		[%tracking_code type:'CartCTA' /%]
+	</div>
+			[%/param%]
+			[%/cart_items%]
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Do not edit below this line-->
+<script type="text/javascript" language="javascript">
+function rmcart (id) { var obj = document.getElementById(id); if(obj) { obj.value="0"; document.checkout.submit(); } }
+</script>
+[%site_value id:'footer_javascript'%]
+	<script>
+	window.paypalCheckoutReady = function () {
+		paypal.checkout.setup(
+			"[%nohtml%][@config:paypal_merchant_id@][%/nohtml%]",
+			{
+				environment: "[%IF [@config:paypal_api_environment@] eq 'sandbox'%]sandbox[%else%]live[%/if%]",
+				button: 'paypal'
+			}
+		);
+	};
+	</script>
+	<script src="//www.paypalobjects.com/api/checkout.js" async></script>
+[%/site_value%]
+[%ga_funnel%]/purchase/shopping_cart.html[%/ga_funnel%]
